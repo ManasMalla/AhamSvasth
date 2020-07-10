@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".UserDataQuestionsActivity">
+
+    <TextView
+        android:id="@+id/aboutYouQuestionOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/gilroy_bold"
+        android:text="About You"
+        android:textColor="#FFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/aboutYouQuestionOne"
+        app:layout_constraintStart_toStartOf="@+id/aboutYouQuestionOne"
+        app:layout_constraintTop_toBottomOf="@+id/aboutYouQuestionOne">
+
+        <View
+            android:id="@+id/question1BarView"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginLeft="43dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:alpha="0.6"
+            android:background="#FFF"
+            app:layout_constraintBottom_toBottomOf="@+id/ageQuestionImageView"
+            app:layout_constraintEnd_toEndOf="@+id/ageQuestionImageView"
+            app:layout_constraintStart_toStartOf="@+id/genderQuestionImageView"
+            app:layout_constraintTop_toTopOf="@+id/ageQuestionImageView" />
+
+        <View
+            android:id="@+id/question2BarView"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:alpha="0.6"
+            android:background="#FFF"
+            app:layout_constraintBottom_toBottomOf="@+id/ageQuestionImageView"
+            app:layout_constraintEnd_toEndOf="@+id/hieghtQuestionImageView"
+            app:layout_constraintStart_toEndOf="@+id/question1BarView"
+            app:layout_constraintTop_toTopOf="@+id/ageQuestionImageView" />
+
+        <View
+            android:id="@+id/question3BarView"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:alpha="0.6"
+            android:background="#FFF"
+            app:layout_constraintBottom_toBottomOf="@+id/ageQuestionImageView"
+            app:layout_constraintEnd_toEndOf="@+id/weightQuestionImageView"
+            app:layout_constraintStart_toEndOf="@+id/question2BarView"
+            app:layout_constraintTop_toTopOf="@+id/ageQuestionImageView" />
+
+        <View
+            android:id="@+id/question4BarView"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:alpha="0.6"
+            android:background="#FFF"
+            app:layout_constraintBottom_toBottomOf="@+id/ageQuestionImageView"
+            app:layout_constraintEnd_toEndOf="@+id/health_historyQuestionImageView"
+            app:layout_constraintStart_toEndOf="@+id/question3BarView"
+            app:layout_constraintTop_toTopOf="@+id/ageQuestionImageView" />
+
+        <View
+            android:id="@+id/question5BarView"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:alpha="0.6"
+            android:background="#FFF"
+            app:layout_constraintBottom_toBottomOf="@+id/ageQuestionImageView"
+            app:layout_constraintEnd_toEndOf="@+id/activityQuestionImageView"
+            app:layout_constraintStart_toEndOf="@+id/question4BarView"
+            app:layout_constraintTop_toTopOf="@+id/ageQuestionImageView" />
+
+        <ImageView
+            android:id="@+id/genderQuestionImageView"
+            android:layout_width="@dimen/data_question_icon"
+            android:layout_height="@dimen/data_question_icon"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/gender" />
+
+        <ImageView
+            android:id="@+id/ageQuestionImageView"
+            android:layout_width="@dimen/data_question_icon"
+            android:layout_height="@dimen/data_question_icon"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/genderQuestionImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/birthday" />
+
+        <ImageView
+            android:id="@+id/hieghtQuestionImageView"
+            android:layout_width="@dimen/data_question_icon"
+            android:layout_height="@dimen/data_question_icon"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ageQuestionImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/measurement" />
+
+        <ImageView
+            android:id="@+id/weightQuestionImageView"
+            android:layout_width="@dimen/data_question_icon"
+            android:layout_height="@dimen/data_question_icon"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/hieghtQuestionImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/wieght" />
+
+        <ImageView
+            android:id="@+id/health_historyQuestionImageView"
+            android:layout_width="@dimen/data_question_icon"
+            android:layout_height="@dimen/data_question_icon"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/weightQuestionImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/health_history" />
+
+        <ImageView
+            android:id="@+id/activityQuestionImageView"
+            android:layout_width="@dimen/data_question_icon"
+            android:layout_height="@dimen/data_question_icon"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/health_historyQuestionImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/activity" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:fontFamily="@font/gilroy_regular"
+        android:text="Please select your gender !"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

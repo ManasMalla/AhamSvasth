@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/diabetesImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:adjustViewBounds="true"
+                    android:onClick="viewButtonD"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:srcCompat="@drawable/diabetes" />
+
+                <ImageView
+                    android:id="@+id/thyroidImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/diabetesImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/diabetesImageView"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:srcCompat="@drawable/thyroid" />
+
+                <TextView
+                    android:id="@+id/diabetesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:text="Diabetes"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/diabetesImageView"
+                    app:layout_constraintStart_toStartOf="@+id/diabetesImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/diabetesImageView" />
+
+                <TextView
+                    android:id="@+id/thyroidTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:text="Thyroid"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/thyroidImageView"
+                    app:layout_constraintStart_toStartOf="@+id/thyroidImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/thyroidImageView" />
+
+                <ImageView
+                    android:id="@+id/cholestrolImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintEnd_toEndOf="@+id/diabetesImageView"
+                    app:layout_constraintStart_toStartOf="@+id/diabetesImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/diabetesTextView"
+                    app:srcCompat="@drawable/cholestrol" />
+
+                <TextView
+                    android:id="@+id/cholestrolTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:text="Cholestrol"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cholestrolImageView"
+                    app:layout_constraintStart_toStartOf="@+id/cholestrolImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/cholestrolImageView" />
+
+                <ImageView
+                    android:id="@+id/bloodPressureImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/cholestrolImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/thyroidImageView"
+                    app:layout_constraintStart_toStartOf="@+id/thyroidImageView"
+                    app:layout_constraintTop_toTopOf="@+id/cholestrolImageView"
+                    app:srcCompat="@drawable/bp" />
+
+                <TextView
+                    android:id="@+id/bloodPressureTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:text="Blood Pressure"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cholestrolTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/bloodPressureImageView"
+                    app:layout_constraintStart_toStartOf="@+id/bloodPressureImageView"
+                    app:layout_constraintTop_toTopOf="@+id/cholestrolTextView" />
+
+                <ImageView
+                    android:id="@+id/obesityImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintStart_toStartOf="@+id/cholestrolImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/cholestrolTextView"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:srcCompat="@drawable/obesity_boy" />
+
+                <TextView
+                    android:id="@+id/obesityTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:text="Obesity"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/obesityImageView"
+                    app:layout_constraintStart_toStartOf="@+id/obesityImageView"
+                    app:layout_constraintTop_toBottomOf="@+id/obesityImageView" />
+
+                <com.github.florent37.shapeofview.shapes.CircleView
+                    android:id="@+id/circleContinueButton"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:elevation="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/obesityImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/bloodPressureImageView"
+                    app:layout_constraintStart_toStartOf="@+id/bloodPressureImageView"
+                    app:layout_constraintTop_toTopOf="@+id/obesityImageView">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="➡"
+                        app:autoSizeTextType="uniform" />
+                </com.github.florent37.shapeofview.shapes.CircleView>
+
+                <ImageView
+                    android:id="@+id/diabetesTickImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/tick"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/diabetesImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/diabetesImageView" />
+
+                <ImageView
+                    android:id="@+id/thyroidTickImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/tick"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/thyroidImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/thyroidImageView" />
+
+                <ImageView
+                    android:id="@+id/cholestrolTickImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/tick"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/cholestrolImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/cholestrolImageView" />
+
+                <ImageView
+                    android:id="@+id/bpTickImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/tick"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/bloodPressureImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/bloodPressureImageView" />
+
+                <ImageView
+                    android:id="@+id/obesityTickImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/tick"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/obesityImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/obesityImageView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

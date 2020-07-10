@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Aham Svasth</string>
+    <string name="facebook_app_id">581985576082933</string>
+    <string name="fb_login_protocol_scheme">fb581985576082933</string>
+    <string name="sign_in_with_twitter">Continue With Twitter</string>
+    <string name="consumerkey">" 9OmcF6p9CX4bwZlsFNKIpE1tl"</string>
+    <string name="consumerSecretKey">" 1j4tzJRz6Io2rV2nilrBmNawKb0XpUSy9dowjk30DFshGsZkFg"</string>
+    <string name="dataRequestText">The information you will provide will help us know you better and tailor the app experience just for you! </string>
+    <string name="sedentarty_meaning">You spend most of the day sitting!</string>
+    <string name="medium_meaning">You are on your feet most of the day!</string>
+    <string name="active_meaning">You are extremely active most of the day!</string>
+    <string name="appDescription"><b>Track your weight, activity, water and food calories to meet your health goals and make fitness fun!</b> \n Aham Svastha* helps you be fit and healthy in the busy-driven world by retreating to the golden-olden, Yoga, and eating healthy food while performing exercises and drinking sufficient water!</string>
+    <string name="navBarTransition">navbarTransition</string>
+    <string name="activity_unknown">Unknown</string>
+    <string name="activity_in_vehicle">In Vehicle</string>
+    <string name="activity_on_bicycle">On Bicycle</string>
+    <string name="activity_on_foot">On Foot</string>
+    <string name="activity_running">Running</string>
+    <string name="activity_still">Still</string>
+    <string name="activity_tilting">Tilting</string>
+    <string name="activity_walking">Walking</string>
+    <string name="activityNotificationText">Exercise is important and we are here to detect you exercise!</string>
+    <string name="waterNotificationText">It\'s time to drink some water! Go and have a glass!</string>
+
 </resources>

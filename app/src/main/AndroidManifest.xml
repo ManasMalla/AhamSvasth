@@ -2,13 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.manasmalla.ahamsvasth">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" /> <!-- Required for 29+. -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
+        android:name=".AhamSvasthaApp"
         android:allowBackup="true"
         android:icon="@mipmap/aham_svsath_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/aham_svsath_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AhamSvasth">
+        <activity android:name=".RecipieActivity"></activity>
+        <activity android:name=".AboutMeActivity" />
+        <activity android:name=".FoodActivity" />
+        <activity android:name=".YogaActivity" />
+        <activity android:name=".JournalActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".IntroductionActivity"
+            android:theme="@style/Theme.introScreen" />
+        <activity
+            android:name=".UserDataQuestionsActivity"
+            android:theme="@style/Theme.dataQuiz" />
+        <activity android:name=".UserDataQuizActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,13 +37,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <!--
+ Service that provides activity recognition data. Setting the android:exported attribute
+        to "false" stops other apps from starting this service, even when using an explicit
+        intent.
+        -->
+        <service android:name=".DetectedActivitiesIntentService" />
+        <service android:name=".BackgroundDetectedActivitiesService" />
+
+        <receiver
+            android:name=".AddWaterService"
+            android:exported="true" />
+        <receiver
+            android:name=".SnoozeService"
+            android:exported="true" />
     </application>
 
 </manifest>

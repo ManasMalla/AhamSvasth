@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="data_question_icon">45dp</dimen>
+    <dimen name="foodCardView">150dp</dimen>
+    <dimen name="elevation">4dp</dimen>
+
+    <dimen name="foodNutritionW">24dp</dimen>
+</resources>

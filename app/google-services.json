@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "818921527939",
+    "firebase_url": "https://aham-svastha.firebaseio.com",
+    "project_id": "aham-svastha",
+    "storage_bucket": "aham-svastha.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818921527939:android:fe2b1a96579d69eafbd9b6",
+        "android_client_info": {
+          "package_name": "com.manasmalla.ahamsvasth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818921527939-tde95pgbfl6d3mfrnu0i1vjgonap63gn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manasmalla.ahamsvasth",
+            "certificate_hash": "6bb17d33b89989bcb2c80a0962b24f5e2424aa0e"
+          }
+        },
+        {
+          "client_id": "818921527939-313sm4ae0ccm927h61539teudtkr993s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtCyK3MaPFrvDSgRYSHwokFS9E11sN8Dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818921527939-313sm4ae0ccm927h61539teudtkr993s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

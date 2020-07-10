@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeNavigationButton"
+        android:title="Home"
+        android:icon="@drawable/round_home_24"/>
+    <item
+        android:id="@+id/yogaNavigationButton"
+        android:title="Yoga"
+        android:icon="@drawable/round_self_improvement_24"/>
+    <item android:id="@+id/foodNavigationButton"
+        android:title="Food"
+        android:icon="@drawable/round_local_dining_24"/>
+    <item android:id="@+id/journalNavigationButton"
+        android:title="Journal"
+        android:icon="@drawable/outline_assignment_24"/>
+    <item android:id="@+id/infoNavigationButton"
+        android:title="About Me"
+        android:icon="@drawable/round_sentiment_satisfied_24"/>
+</menu>
