@@ -6,4 +6,283 @@
     android:layout_height="match_parent"
     tools:context=".RecipieActivity">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView36"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ragi_dosa"
+                        android:transitionName="recipeImageTransition"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/gilroy_xbold"
+                    android:text="TextView"
+                    android:textSize="42sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView10" />
+
+                <com.manasmalla.ahamsvasth.NonScrollListView
+                    android:id="@+id/nonScrollListViewIn1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView41"
+                    app:layout_constraintWidth_percent="0.46" />
+
+                <com.manasmalla.ahamsvasth.NonScrollListView
+                    android:id="@+id/nonScrollListViewIn2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/nonScrollListViewIn1"
+                    app:layout_constraintTop_toTopOf="@+id/nonScrollListViewIn1" />
+
+                <com.manasmalla.ahamsvasth.NonScrollListView
+                    android:id="@+id/nonScrollListViewDes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nonScrollListViewIn1" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nonScrollListViewDes">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView45">
+
+                            <ImageView
+                                android:id="@+id/energyIndicatorRecipe"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/food_bowl" />
+
+
+                            <ImageView
+                                android:id="@+id/carbsIndicatorRecipe"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintEnd_toEndOf="@+id/energyIndicatorRecipe"
+                                app:layout_constraintStart_toStartOf="@id/energyIndicatorRecipe"
+                                app:layout_constraintTop_toBottomOf="@id/energyIndicatorRecipe"
+                                app:srcCompat="@drawable/food_bowl" />
+
+
+                            <ImageView
+                                android:id="@+id/fibreIndicatorRecipe"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintEnd_toEndOf="@+id/carbsIndicatorRecipe"
+                                app:layout_constraintStart_toStartOf="@id/carbsIndicatorRecipe"
+                                app:layout_constraintTop_toBottomOf="@id/carbsIndicatorRecipe"
+                                app:srcCompat="@drawable/food_bowl" />
+
+                            <TextView
+                                android:id="@+id/energyIndicatorRecipeTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="TextView"
+                                android:textSize="18sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/energyIndicatorRecipe"
+                                app:layout_constraintStart_toEndOf="@+id/energyIndicatorRecipe"
+                                app:layout_constraintTop_toTopOf="@+id/energyIndicatorRecipe" />
+
+                            <TextView
+                                android:id="@+id/carbsIndicatorRecipeTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textSize="18sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/carbsIndicatorRecipe"
+                                app:layout_constraintStart_toEndOf="@id/carbsIndicatorRecipe"
+                                app:layout_constraintTop_toTopOf="@+id/carbsIndicatorRecipe" />
+
+                            <TextView
+                                android:id="@+id/fibreIndicatorRecipeTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textSize="18sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/fibreIndicatorRecipe"
+                                app:layout_constraintStart_toEndOf="@id/fibreIndicatorRecipe"
+                                app:layout_constraintTop_toTopOf="@+id/fibreIndicatorRecipe" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView45">
+
+                            <ImageView
+                                android:id="@+id/fatIndicatorRecipe"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintEnd_toEndOf="@+id/proteinIndicatorRecipe"
+                                app:layout_constraintStart_toStartOf="@id/proteinIndicatorRecipe"
+                                app:layout_constraintTop_toBottomOf="@id/proteinIndicatorRecipe"
+                                app:srcCompat="@drawable/food_bowl" />
+
+                            <ImageView
+                                android:id="@+id/cholestrolIndicatorRecipe"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintEnd_toEndOf="@+id/fatIndicatorRecipe"
+                                app:layout_constraintStart_toStartOf="@id/fatIndicatorRecipe"
+                                app:layout_constraintTop_toBottomOf="@id/fatIndicatorRecipe"
+                                app:srcCompat="@drawable/food_bowl" />
+
+                            <ImageView
+                                android:id="@+id/proteinIndicatorRecipe"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/food_bowl" />
+
+                            <TextView
+                                android:id="@+id/proteinIndicatorRecipeTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textSize="18sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/proteinIndicatorRecipe"
+                                app:layout_constraintStart_toEndOf="@+id/proteinIndicatorRecipe"
+                                app:layout_constraintTop_toTopOf="@+id/proteinIndicatorRecipe" />
+
+                            <TextView
+                                android:id="@+id/fatIndicatorRecipeTxt"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textSize="18sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/fatIndicatorRecipe"
+                                app:layout_constraintStart_toStartOf="@+id/proteinIndicatorRecipeTxt"
+                                app:layout_constraintTop_toTopOf="@+id/fatIndicatorRecipe" />
+
+                            <TextView
+                                android:id="@+id/cholestrolIndicatorRecipeTxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textSize="18sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/cholestrolIndicatorRecipe"
+                                app:layout_constraintStart_toStartOf="@+id/fatIndicatorRecipeTxt"
+                                app:layout_constraintTop_toTopOf="@+id/cholestrolIndicatorRecipe" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/textView43"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="2dp"
+                            android:fontFamily="@font/gilroy_bold"
+                            android:text="*Approximations only!"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout8" />
+
+                            <TextView
+                                android:id="@+id/textView45"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/gilroy_bold"
+                                android:text="Nutrition Values*"
+                                android:textSize="24sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

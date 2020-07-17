@@ -94,7 +94,7 @@ public class BackgroundDetectedActivitiesService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.yoga);
+        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.active_boy);
 
         mIntentNotification = new Intent(this, JournalActivity.class);
         PendingIntent notificationPendingIntent = PendingIntent.getActivity(this,

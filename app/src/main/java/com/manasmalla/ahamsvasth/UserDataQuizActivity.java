@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.twitter.sdk.android.core.models.User;
@@ -38,6 +39,7 @@ public class UserDataQuizActivity extends AppCompatActivity {
     TextView nameTextView, emailTextView;
     public static final int storageRquestCode = 001;
     OutputStream outputStream;
+    MaterialCardView materialCardView;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -53,14 +55,15 @@ public class UserDataQuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         setContentView(R.layout.activity_user_data_quiz);
         nameTextView = findViewById(R.id.userNameTextView);
         nameTextView.setText(getIntent().getStringExtra("Name"));
         emailTextView = findViewById(R.id.emailTextView);
-        if (getIntent().getStringExtra("Email") != null){
+        if (getIntent().getStringExtra("Email") != null) {
             emailTextView.setText(getIntent().getStringExtra("Email"));
         }
+        materialCardView = findViewById(R.id.appInfoQuizActivity);
         File externalStorage = UserDataQuizActivity.this.getExternalFilesDir(null);
         File filePath = new File(externalStorage.getAbsolutePath() + "profile");
         File imageSlide = new File(filePath, "profile_image.png");
@@ -76,7 +79,7 @@ public class UserDataQuizActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void changeProfilePic(View view){
+    public void changeProfilePic(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(UserDataQuizActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, storageRquestCode);
@@ -138,7 +141,7 @@ public class UserDataQuizActivity extends AppCompatActivity {
         }
     }
 
-    public void updateUser(View view){
+    public void updateUser(View view) {
         nameTextView.setVisibility(View.INVISIBLE);
         emailTextView.setVisibility(View.INVISIBLE);
         findViewById(R.id.editDetailsImageView).setVisibility(View.GONE);
@@ -149,7 +152,8 @@ public class UserDataQuizActivity extends AppCompatActivity {
         nameEditEditText.setVisibility(View.VISIBLE);
         emailEditEditText.setVisibility(View.VISIBLE);
     }
-    public void updatedUser(View view){
+
+    public void updatedUser(View view) {
         nameTextView.setVisibility(View.VISIBLE);
         emailTextView.setVisibility(View.VISIBLE);
         findViewById(R.id.editDetailsImageView).setVisibility(View.VISIBLE);
@@ -161,11 +165,24 @@ public class UserDataQuizActivity extends AppCompatActivity {
         namedEditText = findViewById(R.id.namedEditText);
         emailedEditText = findViewById(R.id.emailedEditText);
         SharedPreferences.Editor editor = getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).edit();
-        editor.putString("Name", namedEditText.getText().toString()).apply();
-        editor.putString("Email", emailedEditText.getText().toString()).apply();
-        namedEditText.setText(namedEditText.getText().toString());
-        emailedEditText.setText(emailedEditText.getText().toString());
+        editor.putString("username", namedEditText.getText().toString()).apply();
+        if (emailedEditText.getText().toString() != null && !(emailedEditText.getText().toString().matches(""))) {
+            editor.putString("email", emailedEditText.getText().toString()).apply();
+        }
+        editor.putString("current_username", namedEditText.getText().toString()).apply();
+        nameTextView.setText(namedEditText.getText().toString());
+        if (emailedEditText.getText().toString() != null && !(emailedEditText.getText().toString().matches(""))) {
+           emailTextView.setText(emailedEditText.getText().toString());
+        }
         nameEditEditText.setVisibility(View.GONE);
         emailEditEditText.setVisibility(View.GONE);
+    }
+
+    public void showQuestionInfo(View view) {
+        materialCardView.setVisibility(View.VISIBLE);
+    }
+
+    public void closeQuestionInfo(View view) {
+        materialCardView.setVisibility(View.GONE);
     }
 }

@@ -14,7 +14,10 @@
     <item android:id="@+id/journalNavigationButton"
         android:title="Journal"
         android:icon="@drawable/outline_assignment_24"/>
-    <item android:id="@+id/infoNavigationButton"
+    <item android:id="@+id/coronaNavigationButton"
+        android:title="CoronaSafe"
+        android:icon="@drawable/coronavirus"/>
+    <!--<item android:id="@+id/infoNavigationButton"
         android:title="About Me"
-        android:icon="@drawable/round_sentiment_satisfied_24"/>
+        android:icon="@drawable/round_sentiment_satisfied_24"/>-->
 </menu>

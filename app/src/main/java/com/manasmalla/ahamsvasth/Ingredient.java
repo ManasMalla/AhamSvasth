@@ -3,16 +3,52 @@ package com.manasmalla.ahamsvasth;
 public class Ingredient {
     String ingredientName;
     int ingredientDrawable;
-    public void createIngredient(String name, int drawable){
+
+    public void createIngredient(String name, int drawable) {
         this.ingredientName = name;
         this.ingredientDrawable = drawable;
     }
 
-    public static Ingredient onion,uradDal, ragiFlour, salt, oil, riceFlour, curd, suji, ginger, greenChilli, curryLeaf, coriender, jeera, pepper, water, carrot, oats;
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public static Ingredient onion, uradDal, ragiFlour, salt, oil, riceFlour, curd, suji, ginger, greenChilli, curryLeaf, coriender, jeera, pepper, water, carrot, oats;
     public static Ingredient chanaDal, mustardSeeds, greenPeas, frenchBeans, tomato, turmeric, redChilliPowder, sweetCorn, capsicum, gingergarlicPaste, corienderPowder, jeeraPowder;
     public static Ingredient cloves, elachi, bayleaf, cinamon, starAnise, shahJeera, basmati, cashew, paneer, chicken, fish, mutton, prawns, multigrainFlour, mint, spinach, fenugreekSeeds;
-    public static Ingredient ghee, brownRice, eggs, pulses, hing, rice, seasme, lemonJuice, coconut;
-    public void getIngredients(){
+    public static Ingredient ghee, brownRice, eggs, pulses, hing, rice, seasme, lemonJuice, coconut, vegetables, garam_masala, aamchur, ajwain, lentils, moongdal, redChilli, garlic, tamrindJuice, toordal, jaggery, sambarPowder, groundnut, amla;
+    public static Ingredient wheat, nuts, chatMasaala, rajma, chowli, cucumber, pomegranate, oliveoil, banana, brownSugar, bakingPowder, bakingsoda, vanillaEssence, raisins, butter, honey;
+    public static Ingredient quinoa, flax, brocoli, mushroom, tulasi, masoordal, vinegar,blackbeans,tabasco,sweetLime, papaya, methiSprouts,corienderSeeds, ladyfinger, pearlMilletFlour;
+    public static Ingredient kasuriMethi, cream, badam;
+    public void getIngredients() {
+        wheat = new Ingredient();
+        nuts = new Ingredient();
+        masoordal = new Ingredient();
+        vinegar = new Ingredient();
+        blackbeans = new Ingredient();
+        tabasco = new Ingredient();
+        sweetLime = new Ingredient();
+        papaya = new Ingredient();
+        methiSprouts = new Ingredient();
+        chatMasaala = new Ingredient();
+        rajma = new Ingredient();
+        chowli = new Ingredient();
+        cucumber = new Ingredient();
+        pomegranate = new Ingredient();
+        oliveoil = new Ingredient();
+        banana = new Ingredient();
+        brownSugar = new Ingredient();
+        bakingPowder = new Ingredient();
+        bakingsoda = new Ingredient();
+        quinoa = new Ingredient();
+        flax = new Ingredient();
+        brocoli = new Ingredient();
+        mushroom = new Ingredient();
+        tulasi = new Ingredient();
+        vanillaEssence = new Ingredient();
+        raisins = new Ingredient();
+        butter = new Ingredient();
+        honey = new Ingredient();
         onion = new Ingredient();
         uradDal = new Ingredient();
         ragiFlour = new Ingredient();
@@ -68,6 +104,41 @@ public class Ingredient {
         seasme = new Ingredient();
         lemonJuice = new Ingredient();
         coconut = new Ingredient();
+        vegetables = new Ingredient();
+        garam_masala = new Ingredient();
+        aamchur = new Ingredient();
+        ajwain = new Ingredient();
+        lentils = new Ingredient();
+        moongdal = new Ingredient();
+        redChilli = new Ingredient();
+        garlic = new Ingredient();
+        toordal = new Ingredient();
+        tamrindJuice = new Ingredient();
+        jaggery = new Ingredient();
+        sambarPowder = new Ingredient();
+        amla = new Ingredient();
+        groundnut = new Ingredient();
+        corienderSeeds = new Ingredient();
+        ladyfinger = new Ingredient();
+        pearlMilletFlour = new Ingredient();
+        kasuriMethi = new Ingredient();
+        badam = new Ingredient();
+        cream = new Ingredient();
+        coriender.createIngredient("Coriander", R.drawable.food_bowl);
+        amla.createIngredient("Amla", R.drawable.food_bowl);
+        groundnut.createIngredient("Groundnut", R.drawable.food_bowl);
+        jaggery.createIngredient("Jaggery", R.drawable.food_bowl);
+        sambarPowder.createIngredient("Sambar Powder", R.drawable.food_bowl);
+        toordal.createIngredient("Toor Dal", R.drawable.food_bowl);
+        tamrindJuice.createIngredient("Tamrind Juice", R.drawable.food_bowl);
+        redChilli.createIngredient("Red Chilli", R.drawable.food_bowl);
+        garlic.createIngredient("Garlic", R.drawable.food_bowl);
+        moongdal.createIngredient("Moong Dal", R.drawable.food_bowl);
+        lentils.createIngredient("Mixed Lentils", R.drawable.food_bowl);
+        ajwain.createIngredient("Ajwain", R.drawable.food_bowl);
+        aamchur.createIngredient("Aamchur", R.drawable.food_bowl);
+        garam_masala.createIngredient("Garam Masala", R.drawable.food_bowl);
+        vegetables.createIngredient("Veggies", R.drawable.food_bowl);
         onion.createIngredient("Onion", R.drawable.apple_logo);
         uradDal.createIngredient("Urad Dal Paste", R.drawable.apple_logo);
         ragiFlour.createIngredient("Ragi Flour", R.drawable.apple_logo);
@@ -122,5 +193,43 @@ public class Ingredient {
         seasme.createIngredient("Seasme Seeds", R.drawable.ic_water);
         lemonJuice.createIngredient("Lemon Juice", R.drawable.ic_water);
         coconut.createIngredient("Coconut", R.drawable.ic_water);
+
+        wheat.createIngredient("Wheat", R.drawable.ic_water);
+        nuts.createIngredient("Nuts", R.drawable.ic_water);
+        chatMasaala.createIngredient("Chat Masala", R.drawable.ic_water);
+        rajma.createIngredient("Rajma", R.drawable.ic_water);
+        chowli.createIngredient("Chowli Beans", R.drawable.ic_water);
+        cucumber.createIngredient("Cucumber", R.drawable.ic_water);
+        pomegranate.createIngredient("Pomegranate", R.drawable.ic_water);
+        oliveoil.createIngredient("Olive Oil", R.drawable.ic_water);
+        banana.createIngredient("Banana", R.drawable.ic_water);
+        brownSugar.createIngredient("Brown Sugar", R.drawable.ic_water);
+        bakingPowder.createIngredient("Baking Powder", R.drawable.ic_water);
+        bakingsoda.createIngredient("Baking Soda", R.drawable.ic_water);
+        vanillaEssence.createIngredient("Vanilla Essence", R.drawable.ic_water);
+        raisins.createIngredient("Raisins", R.drawable.ic_water);
+        butter.createIngredient("Butter", R.drawable.ic_water);
+        honey.createIngredient("Honey", R.drawable.ic_water);
+        quinoa.createIngredient("Quinoa", R.drawable.ic_water);
+        flax.createIngredient("Flax", R.drawable.ic_water);
+        brocoli.createIngredient("Brocoli", R.drawable.ic_water);
+        mushroom.createIngredient("Mushroom", R.drawable.ic_water);
+        tulasi.createIngredient("Tulasi", R.drawable.ic_water);
+
+        masoordal.createIngredient("Masoor Dal", R.drawable.ic_water);
+        vinegar.createIngredient("Vinegar", R.drawable.ic_water);
+        blackbeans.createIngredient("Black Beans", R.drawable.ic_water);
+        tabasco.createIngredient("Tabasco Sauce", R.drawable.ic_water);
+        sweetLime.createIngredient("Sweet Lime", R.drawable.ic_water);
+        papaya.createIngredient("Papaya", R.drawable.ic_water);
+        methiSprouts.createIngredient("Methi Sprouts", R.drawable.ic_water);
+
+        corienderSeeds.createIngredient("Coriender Seeds", R.drawable.ic_water);
+        ladyfinger.createIngredient("Ladyfingers", R.drawable.ic_water);
+        pearlMilletFlour.createIngredient("Pearl Millet Flour", R.drawable.food_bowl);
+
+        kasuriMethi.createIngredient("Kasuri Methi", R.drawable.food_bowl);
+        badam.createIngredient("Almonds", R.drawable.food_bowl);
+        cream.createIngredient("Fresh Cream", R.drawable.food_bowl);
     }
 }

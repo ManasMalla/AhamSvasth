@@ -43,6 +43,7 @@ public class DetectedActivitiesIntentService  extends IntentService {
 
     private void broadcastActivity(DetectedActivity activity) {
         Intent intent = new Intent(Constants.BROADCAST_DETECTED_ACTIVITY);
+        intent.putExtra("user", AhamSvasthaUser.getCurrentUsername(getApplicationContext()));
         intent.putExtra("type", activity.getType());
         intent.putExtra("confidence", activity.getConfidence());
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);

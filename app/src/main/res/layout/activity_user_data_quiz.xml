@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="closeQuestionInfo"
     tools:context=".UserDataQuizActivity">
 
     <TextView
@@ -11,10 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:fontFamily="@font/gilroy_regular"
         android:text="About You"
         android:textColor="#000"
@@ -23,55 +22,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/healthicon" />
 
-        <FrameLayout
-            android:id="@+id/frameCircleImageView"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            android:layout_marginTop="54dp">
+    <FrameLayout
+        android:id="@+id/frameCircleImageView"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="54dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:src="@drawable/add_profile_pic"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/add_profile_pic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.github.florent37.shapeofview.shapes.CircleView
-                    android:id="@+id/cameraImageView"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:onClick="changeProfilePic"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+            <com.github.florent37.shapeofview.shapes.CircleView
+                android:id="@+id/cameraImageView"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:onClick="changeProfilePic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#1a73e8"
-                        android:padding="8dp"
-                        android:src="@drawable/round_camera_alt_24"
-                        android:tint="#FFF" />
-                </com.github.florent37.shapeofview.shapes.CircleView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#1a73e8"
+                    android:padding="8dp"
+                    android:src="@drawable/round_camera_alt_24"
+                    android:tint="#FFF" />
+            </com.github.florent37.shapeofview.shapes.CircleView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </FrameLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/userNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/gilroy_regular"
+        android:fontFamily="@font/gilroy_medium"
         android:text="Name"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="@+id/frameCircleImageView"
@@ -88,14 +87,14 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:fontFamily="@font/gilroy_regular"
+        android:gravity="center_horizontal"
         android:text="@string/dataRequestText"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aboutYouTextView"
-        android:gravity="center_horizontal" />
+        app:layout_constraintTop_toBottomOf="@+id/aboutYouTextView" />
 
     <ImageView
         android:id="@+id/healthicon"
@@ -115,11 +114,11 @@
         android:layout_height="36dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:onClick="showQuestionInfo"
+        android:tint="#8a000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/round_help_outline_24"
-        android:tint="#8a000000"/>
+        app:srcCompat="@drawable/round_help_outline_24" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/getStartedButton"
@@ -237,4 +236,90 @@
         app:layout_constraintStart_toEndOf="@+id/emailEditEditLayout"
         app:layout_constraintTop_toTopOf="@+id/emailTextView"
         app:srcCompat="@drawable/ic_updated" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/appInfoQuizActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#FBC005"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView33"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/backdrop" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="पुनर्वितं पुनर्मित्रं पुनभार्या पुनर्महि| \n  एतत्सर्वं पुनर्लभ्यं न शरीरं पुनः पुनः||"
+                android:textColor="#FFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView33" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/gilroy_medium"
+                android:text="Wealth, A Friend, A Wife, and a Kingdom maybe regained; \n but health when lost may never be acquired again!"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView35"
+                app:layout_constraintStart_toStartOf="@+id/textView35"
+                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/gilroy_regular"
+                android:text="@string/appDescription"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView36"
+                app:layout_constraintStart_toStartOf="@+id/textView36"
+                app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+            <ImageView
+                android:id="@+id/imageView34"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:onClick="closeQuestionInfo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_no" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

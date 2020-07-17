@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:circleview="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,11 +18,12 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:fillViewport="true">
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,7 +68,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginRight="24dp"
-                        app:cardCornerRadius="50dp"
+                        app:cardCornerRadius="30dp"
                         app:cardElevation="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -74,8 +76,395 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent">
 
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout4"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginEnd="4dp"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintWidth_percent="0.35">
+
+                                <rjsv.circularview.CircleView
+                                    android:id="@+id/proteinsCircleIndicator"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginTop="4dp"
+                                    app:arcBorderColor="@android:color/transparent"
+                                    app:arcColor="#e5e5e5"
+                                    app:arcHasBorder="true"
+                                    app:arcWidth="6dp"
+                                    app:enabled="false"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="0.3"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.5"
+                                    app:progressColor="#f86734"
+                                    app:progressCurrentValue="30"
+                                    app:progressMaximumValue="100"
+                                    app:progressMinimumValue="0"
+                                    app:progressStepAsInteger="true"
+                                    app:progressStepValue="1"
+                                    app:progressWidth="6dp"
+                                    app:textEnabled="false"
+                                    app:textFont="fonts/gilroy_xbold.otf" />
+
+                                <rjsv.circularview.CircleView
+                                    android:id="@+id/energyCircleIndicator"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    app:arcBorderColor="@android:color/transparent"
+                                    app:arcColor="#e5e5e5"
+                                    app:arcHasBorder="true"
+                                    app:arcWidth="6dp"
+                                    app:enabled="false"
+                                    app:layout_constraintEnd_toStartOf="@+id/proteinsCircleIndicator"
+                                    app:layout_constraintHeight_percent="0.3"
+                                    app:layout_constraintTop_toTopOf="@+id/proteinsCircleIndicator"
+                                    app:layout_constraintWidth_percent="0.5"
+                                    app:progressColor="#ea4335"
+                                    app:progressCurrentValue="30"
+                                    app:progressMaximumValue="100"
+                                    app:progressMinimumValue="0"
+                                    app:progressStepAsInteger="true"
+                                    app:progressStepValue="1"
+                                    app:progressWidth="6dp"
+                                    app:textEnabled="false"
+                                    app:textFont="fonts/gilroy_xbold.otf" />
+
+                                <rjsv.circularview.CircleView
+                                    android:id="@+id/fatsCircleIndicator"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginTop="4dp"
+                                    app:arcBorderColor="@android:color/transparent"
+                                    app:arcColor="#e5e5e5"
+                                    app:arcHasBorder="true"
+                                    app:arcWidth="6dp"
+                                    app:enabled="false"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="0.3"
+                                    app:layout_constraintTop_toBottomOf="@+id/proteinsCircleIndicator"
+                                    app:layout_constraintWidth_percent="0.5"
+                                    app:progressColor="#34a853"
+                                    app:progressCurrentValue="30"
+                                    app:progressMaximumValue="100"
+                                    app:progressMinimumValue="0"
+                                    app:progressStepAsInteger="true"
+                                    app:progressStepValue="1"
+                                    app:progressWidth="6dp"
+                                    app:textEnabled="false"
+                                    app:textFont="fonts/gilroy_xbold.otf" />
+
+                                <rjsv.circularview.CircleView
+                                    android:id="@+id/carbohydratesCircleIndicator"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    app:arcBorderColor="@android:color/transparent"
+                                    app:arcColor="#e5e5e5"
+                                    app:arcHasBorder="true"
+                                    app:arcWidth="6dp"
+                                    app:enabled="false"
+                                    app:layout_constraintEnd_toStartOf="@+id/fatsCircleIndicator"
+                                    app:layout_constraintHeight_percent="0.3"
+                                    app:layout_constraintTop_toTopOf="@+id/fatsCircleIndicator"
+                                    app:layout_constraintWidth_percent="0.5"
+                                    app:progressColor="#fbc005"
+                                    app:progressCurrentValue="30"
+                                    app:progressMaximumValue="100"
+                                    app:progressMinimumValue="0"
+                                    app:progressStepAsInteger="true"
+                                    app:progressStepValue="1"
+                                    app:progressWidth="6dp"
+                                    app:textEnabled="false"
+                                    app:textFont="fonts/gilroy_xbold.otf" />
+
+                                <rjsv.circularview.CircleView
+                                    android:id="@+id/cholestrolCircleIndicator"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginTop="4dp"
+                                    app:arcBorderColor="@android:color/transparent"
+                                    app:arcColor="#e5e5e5"
+                                    app:arcHasBorder="true"
+                                    app:arcWidth="6dp"
+                                    app:enabled="false"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="0.3"
+                                    app:layout_constraintTop_toBottomOf="@+id/fatsCircleIndicator"
+                                    app:layout_constraintWidth_percent="0.5"
+                                    app:progressColor="#4a148c"
+                                    app:progressCurrentValue="30"
+                                    app:progressMaximumValue="100"
+                                    app:progressMinimumValue="0"
+                                    app:progressStepAsInteger="true"
+                                    app:progressStepValue="1"
+                                    app:progressWidth="6dp"
+                                    app:textEnabled="false"
+                                    app:textFont="fonts/gilroy_xbold.otf" />
+
+                                <rjsv.circularview.CircleView
+                                    android:id="@+id/fibreCircleIndicator"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    app:arcBorderColor="@android:color/transparent"
+                                    app:arcColor="#e5e5e5"
+                                    app:arcHasBorder="true"
+                                    app:arcWidth="6dp"
+                                    app:enabled="false"
+                                    app:layout_constraintEnd_toStartOf="@+id/cholestrolCircleIndicator"
+                                    app:layout_constraintHeight_percent="0.3"
+                                    app:layout_constraintTop_toTopOf="@+id/cholestrolCircleIndicator"
+                                    app:layout_constraintWidth_percent="0.5"
+                                    app:progressColor="#4285f4"
+                                    app:progressCurrentValue="30"
+                                    app:progressMaximumValue="100"
+                                    app:progressMinimumValue="0"
+                                    app:progressStepAsInteger="true"
+                                    app:progressStepValue="1"
+                                    app:progressWidth="6dp"
+                                    app:textEnabled="false"
+                                    app:textFont="fonts/gilroy_xbold.otf" />
+
+                                <ImageView
+                                    android:id="@+id/imageView9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintBottom_toBottomOf="@+id/energyCircleIndicator"
+                                    app:layout_constraintEnd_toEndOf="@+id/energyCircleIndicator"
+                                    app:layout_constraintStart_toStartOf="@+id/energyCircleIndicator"
+                                    app:layout_constraintTop_toTopOf="@+id/energyCircleIndicator"
+                                    app:srcCompat="@drawable/food_bowl" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout5"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
+                                app:layout_constraintHeight_percent="0.222"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+
+                                <HorizontalScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fillViewport="true"
+                                    android:overScrollMode="never"
+                                    android:scrollbars="none"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent">
+
+                                        <ImageView
+                                            android:id="@+id/imageView14"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"
+                                            android:layout_marginStart="8dp"
+                                            android:layout_marginTop="8dp"
+                                            android:layout_marginBottom="8dp"
+                                            android:adjustViewBounds="true"
+                                            android:tint="@color/waterTint"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toEndOf="@+id/brekfastcircleviewlayout"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:srcCompat="@drawable/ic_edit" />
+
+                                        <LinearLayout
+                                            android:id="@+id/brekfastcircleviewlayout"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"
+                                            android:layout_marginStart="12dp"
+                                            android:layout_marginLeft="12dp"
+                                            android:orientation="horizontal"
+                                            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+                                            app:layout_constraintStart_toEndOf="@+id/imageView18"
+                                            app:layout_constraintTop_toTopOf="@+id/imageView18" />
+
+                                        <ImageView
+                                            android:id="@+id/imageView18"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"
+                                            android:layout_marginStart="8dp"
+                                            android:layout_marginTop="4dp"
+                                            android:layout_marginBottom="4dp"
+                                            android:adjustViewBounds="true"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:srcCompat="@drawable/sunrise" />
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                </HorizontalScrollView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout6"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintEnd_toEndOf="@+id/constraintLayout5"
+                                app:layout_constraintHeight_percent="0.222"
+                                app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
+                                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+                                <ImageView
+                                    android:id="@+id/imageView15"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:adjustViewBounds="true"
+                                    android:tint="@color/waterTint"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/lunchcircleviewlayout"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/ic_edit" />
+
+                                <LinearLayout
+                                    android:id="@+id/lunchcircleviewlayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintBottom_toBottomOf="@id/lunchIcon"
+                                    app:layout_constraintStart_toEndOf="@id/lunchIcon"
+                                    app:layout_constraintTop_toTopOf="@id/lunchIcon" />
+
+                                <ImageView
+                                    android:id="@+id/lunchIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/afternoon" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout7"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
+                                app:layout_constraintHeight_percent="0.222"
+                                app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+                                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+                                <ImageView
+                                    android:id="@+id/imageView16"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:adjustViewBounds="true"
+                                    android:tint="@color/waterTint"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/snackcircleviewlayout"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/ic_edit" />
+
+                                <LinearLayout
+                                    android:id="@+id/snackcircleviewlayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintBottom_toBottomOf="@id/snackIcon"
+                                    app:layout_constraintStart_toEndOf="@id/snackIcon"
+                                    app:layout_constraintTop_toTopOf="@id/snackIcon" />
+
+                                <ImageView
+                                    android:id="@+id/snackIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/snack" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@+id/constraintLayout7"
+                                app:layout_constraintHeight_percent="0.222"
+                                app:layout_constraintStart_toStartOf="@+id/constraintLayout7"
+                                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+                                <ImageView
+                                    android:id="@+id/imageView17"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:adjustViewBounds="true"
+                                    android:tint="@color/waterTint"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/dinnercircleviewlayout"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/ic_edit" />
+
+                                <LinearLayout
+                                    android:id="@+id/dinnercircleviewlayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintBottom_toBottomOf="@id/dinnerIcon"
+                                    app:layout_constraintStart_toEndOf="@id/dinnerIcon"
+                                    app:layout_constraintTop_toTopOf="@id/dinnerIcon" />
+
+                                <ImageView
+                                    android:id="@+id/dinnerIcon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/tent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -108,21 +497,56 @@
                         app:layout_constraintTop_toBottomOf="@+id/materialCardView"
                         app:srcCompat="@drawable/cook" />
 
-                    <LinearLayout
-                        android:id="@+id/cardLinearLayout"
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:orientation="vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/imageView8">
 
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Breakfast" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lunch" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Snack" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dinner" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cardLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
                         <com.manasmalla.ahamsvasth.NonScrollListView
                             android:id="@+id/recipeListView"
-                            android:listSelector="@android:color/transparent"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:listSelector="@android:color/transparent" />
                     </LinearLayout>
 
                     <TextView
@@ -153,7 +577,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/my_navigation_items"/>
+        app:menu="@menu/my_navigation_items" />
 
     <View
         android:id="@+id/view_food"

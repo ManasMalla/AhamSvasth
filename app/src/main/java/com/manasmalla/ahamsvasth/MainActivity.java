@@ -2,12 +2,16 @@ package com.manasmalla.ahamsvasth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import android.Manifest;
 import android.app.ActivityOptions;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,20 +23,28 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import rjsv.circularview.CircleView;
 
 import static com.manasmalla.ahamsvasth.BackgroundDetectedActivitiesService.isServiceRunning;
 
@@ -43,7 +55,25 @@ public class MainActivity extends AppCompatActivity {
     private static final int activityRecognitionPermissionCode = 003;
     ActivityOptions activityOptions;
     ImageView[] waterIndicator;
-    
+    protected static boolean isAppForeground =false;
+    TextView messageSleep,sleepTitle;
+    ImageView morningImageView;
+    NonScrollListView scrollListViewExercise;
+    boolean isSleep = true;
+
+    List<String> activitys, sDate, eDate;
+    List<Integer> distances;
+
+    public void waterOnClick(View view){
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        editor.putInt("Water"+ AhamSvasthaUser.getCurrentUsername(getApplicationContext()) + simpleDateFormat.format(Calendar.getInstance().getTime()), sharedPreferences.getInt("Water" + AhamSvasthaUser.getCurrentUsername(getApplicationContext()) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0) + 1).apply();
+        Toast.makeText(getApplicationContext(), "Very Good! You drank " + sharedPreferences.getInt("Water" + AhamSvasthaUser.getCurrentUsername(getApplicationContext()) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0) + " glasses :)", Toast.LENGTH_SHORT).show();
+        if (MainActivity.isAppForeground){
+            getApplicationContext().startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -58,8 +88,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY|View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        int hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if (hourOfDay >= 6 && hourOfDay < 20){
+            setContentView(R.layout.activity_main);
+        }else{
+            setContentView(R.layout.activity_main_sleep);
+        }
+
+        messageSleep = findViewById(R.id.textView19);
+        sleepTitle = findViewById(R.id.textView26);
+        morningImageView = findViewById(R.id.imageView19);/*
+        NutritionAPIJSONCreator nutritionAPIJSONCreator = new NutritionAPIJSONCreator();
+        nutritionAPIJSONCreator.createAPIJSON();*/
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.homeNavigationButton);
@@ -81,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, JournalActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.infoNavigationButton:
-                        startActivity(new Intent(MainActivity.this, AboutMeActivity.class));
+                    case R.id.coronaNavigationButton:
+                        startActivity(new Intent(MainActivity.this, CoronaCautionActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -92,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
         greetTextView = findViewById(R.id.usernameGreet_MainActivity);
         profileImage = findViewById(R.id.userProfile_mainActivity);
-        String displayName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        String displayName = AhamSvasthaUser.getCurrentUsername(this);
         String firstName = displayName;
         if (displayName.contains(" ")) {
             firstName = displayName.substring(0, displayName.indexOf(" "));
@@ -106,15 +147,62 @@ public class MainActivity extends AppCompatActivity {
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                Intent socialIntent = new Intent(getApplicationContext(), UserDataQuizActivity.class);
+                socialIntent.putExtra("Name", MainActivity.this.getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).getString("username", null) );
+                socialIntent.putExtra("Email", MainActivity.this.getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).getString("email", null) );
+                startActivity(socialIntent);
             }
         });
+
+        scrollListViewExercise = findViewById(R.id.exerciseIndicatorMainActivity);
+        activitys = new ArrayList<>();
+        distances = new ArrayList<>();
+        if (ActivityDatabase.getDatabase(this) != null) {
+
+            List<ActivityDatabase.Activity> activityList = ActivityDatabase.getDatabase(this);
+            for (ActivityDatabase.Activity activity:activityList){
+                if (activity.getStartTime().getDate() == Calendar.getInstance().getTime().getDate() && activity.getStartTime().getMonth() == Calendar.getInstance().getTime().getMonth() && activity.getStartTime().getYear() == Calendar.getInstance().getTime().getYear()){
+                    activitys.add(activity.getName() + ", " +activity.getDistance() + "m");
+                }
+            }
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, activitys);
+        scrollListViewExercise.setAdapter(arrayAdapter);
+        arrayAdapter.notifyDataSetChanged();
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY|View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        int hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE,-1);
+        if (hourOfDay >= 6 && hourOfDay < 20){
+            //setContentView(R.layout.activity_main);
+            AlarmManager am = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
+            Date futureDate = new Date(new Date().getTime() + 86400000);
+            futureDate.setHours(6);
+            futureDate.setMinutes(0);
+            futureDate.setSeconds(0);
+            Intent intent = new Intent(getApplicationContext(), MyAppReciever.class);
+
+            PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            am.set(AlarmManager.RTC_WAKEUP, futureDate.getTime(), sender);
+
+            if (hourOfDay >= 10){
+                getSleepTimeText();
+            }else {
+                didYouWakeUpTextChanger();
+            }
+        }else{
+            //setContentView(R.layout.activity_main_sleep);
+            didYouSleepTextChanger();
+        }
+        isAppForeground = true;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, activityRecognitionPermissionCode);
         } else {
@@ -139,14 +227,91 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        /*try {
+//            Log.i("Sleep Date", String.valueOf(simpleDateFormat.parse(getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getString("Slept@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(calendar.getTime()), ""))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+         */
         Log.i("Date", simpleDateFormat.format(Calendar.getInstance().getTime()));
-        for (int i = 0; i < getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getInt("Water"+ simpleDateFormat.format(Calendar.getInstance().getTime()), 0); i++){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                waterIndicator[i].setImageTintList(null);
-            }else{
-                waterIndicator[i].setImageResource(R.drawable.water);
+        for (int i = 0; i < getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getInt("Water"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(Calendar.getInstance().getTime()), 0); i++){
+            if (i < 8) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    waterIndicator[i].setImageTintList(null);
+                } else {
+                    waterIndicator[i].setImageResource(R.drawable.water);
+                }
             }
         }
+        int numberOfPoses = getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getInt("PosesNumber" + AhamSvasthaUser.getCurrentUsername(this) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0);
+        int poseNumber = getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getInt("Pose" + AhamSvasthaUser.getCurrentUsername(this) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0);
+        CircleView exerciseIndicator = findViewById(R.id.exerciseCircleViewindicator);
+        TextView exerciseIndicatorText = findViewById(R.id.textView40);
+        if (numberOfPoses !=0) {
+            exerciseIndicator.setProgressValue((poseNumber * 100) / numberOfPoses);
+            exerciseIndicatorText.setText(poseNumber + "\n-----\n" + numberOfPoses);
+        }
+    }
+
+    public class MyAppReciever extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            startService(new Intent(MainActivity.this, BackgroundDetectedActivitiesService.class));
+        }
+    }
+
+    private void didYouSleepTextChanger() {
+        isSleep = true;
+        messageSleep.setText("Did you go to");
+        morningImageView.setImageResource(R.drawable.sleep);
+        findViewById(R.id.imageView21).setVisibility(View.VISIBLE);
+        findViewById(R.id.imageView22).setVisibility(View.VISIBLE);
+    }
+
+    private void didYouWakeUpTextChanger() {
+        isSleep = false;
+        messageSleep.setText("Did you wake up from");
+        morningImageView.setImageResource(R.drawable.awake);
+        findViewById(R.id.imageView21).setVisibility(View.VISIBLE);
+        findViewById(R.id.imageView22).setVisibility(View.VISIBLE);
+    }
+
+    private void getSleepTimeText() {
+        messageSleep.setText("You slept for");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        Date sleptDate=null, wokeDate = null;
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE,-1);
+        Log.d("Yesterday", simpleDateFormat.format(calendar.getTime()));
+        try {
+            sleptDate = simpleDateFormat.parse(getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getString("Slept@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(calendar.getTime()), ""));
+
+            wokeDate = simpleDateFormat.parse(getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getString("Woke@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(calendar.getTime()), ""));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (sleptDate != null && wokeDate != null) {
+            sleepTitle.setText(String.valueOf((int) ((wokeDate.getTime() - sleptDate.getTime())/3600000)) + " hours!");
+        }else{
+            sleepTitle.setText("?? hours!");
+        }
+        findViewById(R.id.imageView21).setVisibility(View.GONE);
+        findViewById(R.id.imageView22).setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isAppForeground = false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isAppForeground = false;
     }
 
     public void showIntroduction(View view) {
@@ -164,4 +329,33 @@ public class MainActivity extends AppCompatActivity {
         stopService(intent);
     }
 
+    public void sleptOnClick(View view) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        if (isSleep){
+            if (getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getString("Slept@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(Calendar.getInstance().getTime()),null)!=null){
+                Log.d("Slept", "Already");
+            }else{
+                getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).edit().putString("Slept@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(Calendar.getInstance().getTime()), simpleDateFormat.format(Calendar.getInstance().getTime()).toString()).apply();
+                stopTracking();
+            }
+            didYouWakeUpTextChanger();
+        }else{
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE,-1);
+            if (getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getString("Woke@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(calendar.getTime()), null)!=null){
+                Log.d("Woke", "Already");
+            }else{
+                getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).edit().putString("Woke@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(calendar.getTime()), simpleDateFormat.format(Calendar.getInstance().getTime()).toString()).apply();
+            }
+            getSleepTimeText();
+        }
+    }
+
+    public void didSleepOnClick(View view) {
+        if (isSleep) {
+            Toast.makeText(this, "It's time to go to bed! Remember, Early to Bed, Early to Rise! :)", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "It's time to go to wake up! Remember, Early to Bed, Early to Rise! :)", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

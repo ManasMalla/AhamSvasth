@@ -17,7 +17,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +45,7 @@
                         android:id="@+id/userProfile_mainActivity"
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
                         android:src="@drawable/add_profile_pic"
@@ -89,7 +90,7 @@
                         app:cardElevation="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textView16">
+                        app:layout_constraintTop_toBottomOf="@id/waterCard">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -108,6 +109,47 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/yoga" />
+
+                            <rjsv.circularview.CircleView
+                                android:id="@+id/exerciseCircleViewindicator"
+                                android:layout_width="125dp"
+                                android:layout_height="125dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                app:arcBorderColor="@android:color/transparent"
+                                app:arcColor="#e5e5e5"
+                                app:arcHasBorder="true"
+                                app:arcWidth="12dp"
+                                app:enabled="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/imageView10"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:progressColor="#f86734"
+                                app:progressCurrentValue="0"
+                                app:progressMaximumValue="100"
+                                app:progressMinimumValue="0"
+                                app:progressStepAsInteger="false"
+                                app:progressWidth="12dp"
+                                app:suffixEnabled="false"
+                                app:textEnabled="false"/>
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginEnd="24dp"
+                                android:layout_marginBottom="24dp"
+                                android:fontFamily="@font/gilroy_xbold"
+                                android:textAlignment="center"
+                                app:autoSizeTextType="uniform"
+                                app:layout_constraintBottom_toBottomOf="@+id/exerciseCircleViewindicator"
+                                app:layout_constraintEnd_toEndOf="@+id/exerciseCircleViewindicator"
+                                app:layout_constraintStart_toStartOf="@+id/exerciseCircleViewindicator"
+                                app:layout_constraintTop_toTopOf="@+id/exerciseCircleViewindicator" />
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -149,36 +191,56 @@
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/exerciseCard"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginLeft="24dp"
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="24dp"
-                        android:layout_marginRight="24dp"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/foodCard">
 
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fillViewport="true"
+                        android:overScrollMode="never">
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
-                            <ImageView
-                                android:id="@+id/imageView12"
-                                android:layout_width="125dp"
-                                android:layout_height="125dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginBottom="16dp"
-                                android:adjustViewBounds="true"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/active_boy" />
+                                <ImageView
+                                    android:id="@+id/imageView12"
+                                    android:layout_width="125dp"
+                                    android:layout_height="125dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/active_boy" />
+
+                                <com.manasmalla.ahamsvasth.NonScrollListView
+                                    android:id="@+id/exerciseIndicatorMainActivity"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:overScrollMode="never"
+                                    android:scrollbars="none"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView12"
+                                    app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.core.widget.NestedScrollView>
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -190,13 +252,11 @@
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginRight="24dp"
-                        android:layout_marginBottom="24dp"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/exerciseCard">
+                        app:layout_constraintTop_toBottomOf="@+id/textView16">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -337,9 +397,125 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginBottom="24dp"
+                        app:cardBackgroundColor="#157efd"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/exerciseCard">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imageView19"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:adjustViewBounds="true"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/sleep" />
+
+
+                            <TextView
+                                android:id="@+id/textView19"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="Did you go to"
+                                android:textColor="#FFF"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/imageView19"
+                                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+                            <TextView
+                                android:id="@+id/textView26"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_bold"
+                                android:text="Bed?"
+                                android:textColor="#FFF"
+                                android:textSize="32sp"
+                                app:layout_constraintStart_toStartOf="@+id/textView19"
+                                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                            <ImageView
+                                android:id="@+id/imageView21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="24dp"
+                                android:layout_marginBottom="16dp"
+                                android:onClick="sleptOnClick"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:srcCompat="@drawable/ic_updated" />
+
+                            <ImageView
+                                android:id="@+id/imageView22"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="12dp"
+                                android:onClick="didSleepOnClick"
+                                app:layout_constraintBottom_toBottomOf="@+id/imageView21"
+                                app:layout_constraintEnd_toStartOf="@+id/imageView21"
+                                app:srcCompat="@drawable/ic_no" />
+
+                            <TextView
+                                android:id="@+id/textView27"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/gilroy_bold"
+                                android:text="Sleep Time!"
+                                android:textSize="18sp"
+                                app:layout_constraintStart_toStartOf="@+id/textView19"
+                                app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="waterOnClick"
+                android:src="@drawable/ic_water"
+                app:backgroundTint="#4285f4"
+                app:fabSize="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:maxImageSize="36dp"
+                app:tint="@color/white" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

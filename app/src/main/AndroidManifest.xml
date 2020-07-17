@@ -4,24 +4,30 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" /> <!-- Required for 29+. -->
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".AhamSvasthaApp"
         android:allowBackup="true"
         android:icon="@mipmap/aham_svsath_icon"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/aham_svsath_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AhamSvasth">
-        <activity android:name=".RecipieActivity"></activity>
+        <activity android:name=".ListOfFoodActivity"></activity>
+        <activity android:name=".CoronaCautionActivity" />
+        <activity android:name=".RecipieActivity" />
         <activity android:name=".AboutMeActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".YogaActivity" />
         <activity android:name=".JournalActivity" />
-        <activity android:name=".SettingsActivity" />
         <activity
             android:name=".IntroductionActivity"
             android:theme="@style/Theme.introScreen" />
@@ -75,6 +81,20 @@
         <receiver
             android:name=".SnoozeService"
             android:exported="true" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
+
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true" />
     </application>
 
 </manifest>

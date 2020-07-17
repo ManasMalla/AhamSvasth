@@ -14,6 +14,12 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.manasmalla.ahamsvasth.RecipesList.Nutrient.CARBS;
+import static com.manasmalla.ahamsvasth.RecipesList.Nutrient.CHOLESTEROL;
+import static com.manasmalla.ahamsvasth.RecipesList.Nutrient.FATS;
+import static com.manasmalla.ahamsvasth.RecipesList.Nutrient.FIBRE;
+import static com.manasmalla.ahamsvasth.RecipesList.Nutrient.PROTEINS;
+
 public class RecipeListAdapter extends BaseAdapter {
 
     Context context;
@@ -44,7 +50,6 @@ public class RecipeListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-
         ViewHolder viewHolder;
 
         final View result;
@@ -71,12 +76,12 @@ public class RecipeListAdapter extends BaseAdapter {
         }
         viewHolder.recipeNameTextView.setText(recipes.get(position).recipeName);
         viewHolder.recipeImageView.setImageResource(recipes.get(position).recipeImage);
-        viewHolder.recipeNutrient1TextView.setText(recipes.get(position).nutrients.get("Energy"));
-        viewHolder.recipeNutrient2TextView.setText(recipes.get(position).nutrients.get("Proteins"));
-        viewHolder.recipeNutrient3TextView.setText(recipes.get(position).nutrients.get("Carbohydrates"));
-        viewHolder.recipeNutrient4TextView.setText(recipes.get(position).nutrients.get("Fats"));
-        viewHolder.recipeNutrient5TextView.setText(recipes.get(position).nutrients.get("Fibre"));
-        viewHolder.recipeNutrient6TextView.setText(recipes.get(position).nutrients.get("Proteins"));
+        viewHolder.recipeNutrient1TextView.setText(recipes.get(position).nutrients.get(RecipesList.Nutrient.ENERGY));
+        viewHolder.recipeNutrient2TextView.setText(recipes.get(position).nutrients.get(PROTEINS));
+        viewHolder.recipeNutrient3TextView.setText(recipes.get(position).nutrients.get(CARBS));
+        viewHolder.recipeNutrient4TextView.setText(recipes.get(position).nutrients.get(FATS));
+        viewHolder.recipeNutrient5TextView.setText(recipes.get(position).nutrients.get(FIBRE));
+        viewHolder.recipeNutrient6TextView.setText(recipes.get(position).nutrients.get(CHOLESTEROL));
         return convertView;
     }
 

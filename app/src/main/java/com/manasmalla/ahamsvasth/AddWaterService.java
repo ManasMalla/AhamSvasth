@@ -41,8 +41,10 @@ public class AddWaterService extends BroadcastReceiver {
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
-        editor.putInt("Water"+ simpleDateFormat.format(Calendar.getInstance().getTime()), sharedPreferences.getInt("Water" + simpleDateFormat.format(Calendar.getInstance().getTime()), 0) + 1).apply();
-        Toast.makeText(context, "Very Good! You drank" + sharedPreferences.getInt("Water", 0) + " glasses :)", Toast.LENGTH_SHORT).show();
-
+        editor.putInt("Water"+ AhamSvasthaUser.getCurrentUsername(context) + simpleDateFormat.format(Calendar.getInstance().getTime()), sharedPreferences.getInt("Water" + AhamSvasthaUser.getCurrentUsername(context) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0) + 1).apply();
+        Toast.makeText(context, "Very Good! You drank " + sharedPreferences.getInt("Water" + AhamSvasthaUser.getCurrentUsername(context) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0) + " glasses :)", Toast.LENGTH_SHORT).show();
+        if (MainActivity.isAppForeground){
+            context.startActivity(new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
     }
 }

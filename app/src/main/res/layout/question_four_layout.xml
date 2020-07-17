@@ -44,6 +44,7 @@
             android:inputType="number"
             android:paddingStart="32dp"
             android:paddingLeft="32dp"
+            android:textColor="#000"
             android:textSize="24sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,8 +71,9 @@
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/gilroy_bold"
             android:gravity="center_vertical"
+            android:hint="unit"
             android:inputType="none"
-            android:hint="unit"/>
+            android:textColor="@color/waterTint" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/appLogo_loginActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="32dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toTopOf="@+id/nameTextInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rounded_white_dark" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Name"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/continueMaterialButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gilroy_medium"
+            android:inputType="textPersonName"
+            android:paddingStart="24dp"
+            android:paddingLeft="24dp"
+            android:textSize="24sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueMaterialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/gilroy_xbold"
+        android:onClick="continueLoginOnClick"
+        android:text="Continue"
+        android:textColor="#8a000000"
+        app:backgroundTint="#FFF"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/googleButton"
+        app:layout_constraintEnd_toEndOf="@+id/nameTextInputLayout" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/googleButton"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#FFF"
+        app:layout_constraintBottom_toTopOf="@+id/facebookButton"
+        app:layout_constraintEnd_toEndOf="@+id/nameTextInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/nameTextInputLayout"
+        app:strokeColor="#8a000000"
+        app:strokeWidth="0.54dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="signInWithGoogle">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/google" />
+
+            <TextView
+                android:id="@+id/googleLoginButtonText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/gilroy_regular"
+                android:gravity="center"
+                android:text="Sign in With Google"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/facebookButton"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/twitterButton"
+        app:layout_constraintEnd_toEndOf="@+id/googleButton"
+        app:layout_constraintStart_toStartOf="@+id/googleButton">
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/loginButton_facebook"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingLeft="30dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/twitterButton"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/facebookButton"
+        app:layout_constraintStart_toStartOf="@+id/facebookButton">
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/btnTwitterLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="30dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:text="@string/sign_in_with_twitter" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

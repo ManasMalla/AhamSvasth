@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,74 +27,30 @@ import static com.manasmalla.ahamsvasth.LoginActivity.downloadImage;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
-    OutputStream outputStream;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        if (this.getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).getString("Gender", null) != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        } else if (mAuth.getCurrentUser() != null) {
-            mAuth.getCurrentUser().getIdToken(false).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-                @Override
-                public void onSuccess(GetTokenResult getTokenResult) {
-                    updateUI(mAuth.getCurrentUser(), getTokenResult.getSignInProvider());
-                }
-            });
-        } else {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    private void updateUI(FirebaseUser user, String provider) {
-        //
-        if (user != null) {
-            Intent socialIntent = new Intent(getApplicationContext(), UserDataQuizActivity.class);
-
-            String userPhotoURL = String.valueOf(user.getPhotoUrl());
-            if (provider.matches("facebook.com")) {
-                userPhotoURL = userPhotoURL + "?height=512";
-            } else if (provider.matches("twitter.com")) {
-                userPhotoURL = userPhotoURL.replace("_normal", "");
-            }
-            userPhotoURL = userPhotoURL.replace("s96-c", "s512-c");
-            Log.i(provider, userPhotoURL);
-            socialIntent.putExtra("Name", user.getDisplayName());
-            socialIntent.putExtra("Email", user.getEmail());
-            Bitmap profileBitmap = downloadImage(userPhotoURL);
-
-            File externalStorage = SplashScreenActivity.this.getExternalFilesDir(null);
-            File filePath = new File(externalStorage.getAbsolutePath() + "profile");
-            if (filePath.exists()) {
-                Log.i("FilePath", "Exists");
-            } else {
-                if (filePath.mkdir()) {
-                    Log.i("Created Folder at ", filePath.toString());
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (SplashScreenActivity.this.getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).getString("Gender"+AhamSvasthaUser.getCurrentUsername(SplashScreenActivity.this), null) != null) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                } else if (SplashScreenActivity.this.getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).getString("username", null) != null){
+                    Intent socialIntent = new Intent(getApplicationContext(), UserDataQuizActivity.class);
+                    socialIntent.putExtra("Name", SplashScreenActivity.this.getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).getString("username", null) );
+                    socialIntent.putExtra("Email", SplashScreenActivity.this.getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).getString("email", null) );
+                    startActivity(socialIntent);
                 } else {
-                    Toast.makeText(this, "Couldn't save profile pic! ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 }
             }
-            File imageSlide = new File(filePath, "profile_image.png");
-
-            try {
-                outputStream = new FileOutputStream(imageSlide);
-                profileBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                outputStream.flush();
-                outputStream.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            startActivity(socialIntent);
-        }
+        };
+        handler.postDelayed(runnable, 2000);
 
     }
 }

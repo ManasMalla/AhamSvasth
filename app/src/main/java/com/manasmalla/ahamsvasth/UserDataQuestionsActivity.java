@@ -47,6 +47,7 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
     ArrayAdapter<String> wAdapter;
     String unit = " cm", wUnit = " kg";
     ImageView diabetesTick, thyroidTick, cholestrolTick, bpTick, obesityTick;
+    TextView question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
         setContentView(R.layout.activity_user_data_questions);
 
         user = new AhamSvasthaUser();
+
+        question = findViewById(R.id.textView);
 
         final String[] units = new String[]{"cm", "m", "in", "feet"};
         adapter = new ArrayAdapter<String>(this, R.layout.dropdown_menu_popup_item, units);
@@ -104,10 +107,12 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
             @Override
             public void onPageSelected(int position) {
                 Log.i("Page", String.valueOf(position));
-                if (findViewById(R.id.birthdayAgeImageView) != null) {
+                if (position == 0 && findViewById(R.id.boyImageView)!=null) {
+                    question.setText("Please select your gender!");
+                } else if (position == 1 && findViewById(R.id.birthdayAgeImageView) != null) {
 
                     ImageView birthdayImageView = findViewById(R.id.birthdayAgeImageView);
-
+                    question.setText("Please enter your age!");
                     if (user.gender == "Boy") {
                         birthdayImageView.setImageResource(R.drawable.birthage_boy);
                     } else {
@@ -117,12 +122,18 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                     ageEditText.setOnKeyListener(UserDataQuestionsActivity.this::onKey);
                 } else if (position == 3 && findViewById(R.id.weightImageView) != null) {
                     ImageView weightImageView = findViewById(R.id.weightImageView);
-
+                    question.setText("Please enter your weight!");
                     if (user.gender == "Boy") {
                         weightImageView.setImageResource(R.drawable.weight_boy);
                     } else {
                         weightImageView.setImageResource(R.drawable.weight_girl);
                     }
+                } else if (position == 2 && findViewById(R.id.heightImageView) != null) {
+                    question.setText("Please enter your height!");
+                } else if (position == 4 && findViewById(R.id.diabetesImageView) != null) {
+                    question.setText("Please select all the diseases you have!");
+                } else if (position == 5 && findViewById(R.id.restCardView) != null) {
+                    question.setText("Please select how your day goes on!");
                 }
             }
 
@@ -188,6 +199,7 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
             if (position == 0) {
                 ImageView boyImageView = view.findViewById(R.id.boyImageView);
                 ImageView girlImageView = view.findViewById(R.id.girlImageView);
+                question.setText("Please select your gender!");
                 boyImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -237,7 +249,6 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                 });
                 adapter.notifyDataSetChanged();
             } else if (view.findViewById(R.id.weightUnitsTextView) != null) {
-
                 weightEditText = currentView.findViewById(R.id.weightEditText);
                 weightEditText.setOnKeyListener(UserDataQuestionsActivity.this::onKey);
                 wUnitsView = view.findViewById(R.id.weightUnitsTextView);
@@ -257,6 +268,7 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                 });
                 wAdapter.notifyDataSetChanged();
             } else if (currentView.findViewById(R.id.diabetesImageView) != null) {
+
                 ImageView diabetesIV = currentView.findViewById(R.id.diabetesImageView);
                 TextView diabetesTV = currentView.findViewById(R.id.diabetesTextView);
                 ImageView thyroidIV = currentView.findViewById(R.id.thyroidImageView);
@@ -287,10 +299,12 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                     @Override
                     public void onClick(View v) {
                         user.setDiseases(disease);
+                        Log.i("Diseases", disease.toString());
                         goToNextPage();
                     }
                 });
-            }else if (currentView.findViewById(R.id.restCardView)!= null){
+            } else if (currentView.findViewById(R.id.restCardView) != null) {
+
                 MaterialCardView sedentary = currentView.findViewById(R.id.restCardView);
                 MaterialCardView medium = currentView.findViewById(R.id.mediumActivityCardView);
                 MaterialCardView hectic = currentView.findViewById(R.id.activeCardView);
@@ -300,7 +314,9 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                     public void onClick(View v) {
                         user.setUserActivity("Sedentary");
                         Log.i("About User", user.getUserData());
-                        AhamSvasthaUser.saveAhamSvasthaUser(user,UserDataQuestionsActivity.this);
+
+                        Log.i("Diseases", user.getDiseases());
+                        AhamSvasthaUser.saveAhamSvasthaUser(user, UserDataQuestionsActivity.this, AhamSvasthaUser.getCurrentUsername(UserDataQuestionsActivity.this));
                         startActivity(intentMain);
                     }
                 });
@@ -309,7 +325,7 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                     public void onClick(View v) {
                         user.setUserActivity("Active");
                         Log.i("About User", user.getUserData());
-                        AhamSvasthaUser.saveAhamSvasthaUser(user, UserDataQuestionsActivity.this);
+                        AhamSvasthaUser.saveAhamSvasthaUser(user, UserDataQuestionsActivity.this, AhamSvasthaUser.getCurrentUsername(UserDataQuestionsActivity.this));
                         startActivity(intentMain);
                     }
                 });
@@ -318,7 +334,7 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                     public void onClick(View v) {
                         user.setUserActivity("Hectic");
                         Log.i("About User", user.getUserData());
-                        AhamSvasthaUser.saveAhamSvasthaUser(user,UserDataQuestionsActivity.this);
+                        AhamSvasthaUser.saveAhamSvasthaUser(user, UserDataQuestionsActivity.this, AhamSvasthaUser.getCurrentUsername(UserDataQuestionsActivity.this));
                         startActivity(intentMain);
                     }
                 });

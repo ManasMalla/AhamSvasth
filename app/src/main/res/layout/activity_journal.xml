@@ -14,10 +14,202 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:onClick="hideView">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView47"
+                app:layout_constraintTop_toBottomOf="@+id/textView47">
+
+                <ListView
+                    android:id="@+id/exercisesListActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addActivityJournalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="addExercise"
+                android:src="@drawable/ic_add"
+                app:backgroundTint="#FBC005"
+                app:elevation="18dp"
+                app:fabSize="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/white" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/addExerciseCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:visibility="gone"
+                app:borderWidth="5dp"
+                app:cardBackgroundColor="@color/waterTint"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    app:cardCornerRadius="30dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFF">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayout3"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="16dp"
+                            android:hint="Activity"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/exerciseAutoCompleteTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/textView39"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Start Date"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayout4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:hint="Distance (in metres)"
+                            app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+                            app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+                            app:layout_constraintTop_toBottomOf="@+id/textView38">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/distanceEditTextJournal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_bold"
+                                android:textSize="24sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="24dp"
+                            android:fontFamily="@font/gilroy_xbold"
+                            android:onClick="addActivityButtonOnClick"
+                            android:text="Add"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+
+                        <TextView
+                            android:id="@+id/textView38"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="End Date"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="@+id/textView39"
+                            app:layout_constraintStart_toStartOf="@+id/textView39"
+                            app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+                        <ImageView
+                            android:id="@+id/imageView37"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:tint="@color/waterTint"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView39"
+                            app:layout_constraintStart_toEndOf="@+id/textView39"
+                            app:layout_constraintTop_toTopOf="@+id/textView39"
+                            app:srcCompat="@drawable/ic_edit" />
+
+                        <ImageView
+                            android:id="@+id/imageView38"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:tint="@color/waterTint"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView38"
+                            app:layout_constraintStart_toEndOf="@+id/textView38"
+                            app:layout_constraintTop_toTopOf="@+id/textView38"
+                            app:srcCompat="@drawable/ic_edit" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/textView47"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/gilroy_xbold"
+                android:text="Journal"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView40"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:tint="#1a73e8"
+                app:layout_constraintBottom_toBottomOf="@+id/textView47"
+                app:layout_constraintStart_toEndOf="@+id/textView47"
+                app:layout_constraintTop_toTopOf="@+id/textView47"
+                app:srcCompat="@drawable/ic_journal" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation_journal"

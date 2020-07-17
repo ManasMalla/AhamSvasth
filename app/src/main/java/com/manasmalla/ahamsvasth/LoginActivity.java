@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -74,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
     CallbackManager mCallbackManager;
     Intent socialIntent;
     OutputStream outputStream;
+    SharedPreferences.Editor editor;
 
     //Social Login
     private FirebaseAuth mAuth;
@@ -102,6 +104,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
 
         //Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+        editor = getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE).edit();
 
         //Google Login
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -156,6 +160,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
         Log.i("Button Pressed", name);
         Intent intent = new Intent(getApplicationContext(), UserDataQuizActivity.class);
         intent.putExtra("Name", name);
+        intent.putExtra("Email", "Please enter an email by editing!");
+        editor.putString("username", name).apply();
+        editor.putString("current_username", name).apply();
         startActivity(intent);
     }
 
@@ -165,6 +172,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
         if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
             name = nameEditText.getText().toString();
             Log.i("Button Pressed", name);
+            Intent intent = new Intent(getApplicationContext(), UserDataQuizActivity.class);
+            intent.putExtra("Name", name);
+            intent.putExtra("Email", "Please enter an email by editing!");
+            editor.putString("username", name).apply();
+            editor.putString("current_username", name).apply();
+            startActivity(intent);
         }
         return false;
     }
@@ -321,6 +334,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
             Log.i("profileURL", userPhotoURL);
             socialIntent.putExtra("Name", user.getDisplayName());
             socialIntent.putExtra("Email", user.getEmail());
+            editor.putString("username", user.getDisplayName()).apply();
+            editor.putString("email", user.getEmail()).apply();
+            editor.putString("current_username", user.getDisplayName()).apply();
             Bitmap profileBitmap = downloadImage(userPhotoURL);
             File externalStorage = LoginActivity.this.getExternalFilesDir(null);
             File filePath = new File(externalStorage.getAbsolutePath() + "profile");

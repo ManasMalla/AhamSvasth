@@ -62,7 +62,8 @@
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ragi_dosa" />
+                    app:srcCompat="@drawable/ragi_dosa"
+                    android:transitionName="recipeImageTransition"/>
             </com.google.android.material.card.MaterialCardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -127,7 +128,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:adjustViewBounds="true"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV1"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionIV1"
                     app:layout_constraintTop_toBottomOf="@+id/nutritionIV1"
                     app:srcCompat="@drawable/food_bowl" />
 
@@ -135,22 +137,20 @@
                     android:id="@+id/nutritionTV3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
                     android:fontFamily="@font/gilroy_medium"
                     android:text="50 cal"
                     app:layout_constraintBottom_toBottomOf="@+id/nutritionIV3"
                     app:layout_constraintStart_toEndOf="@+id/nutritionIV3"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionTV1"
                     app:layout_constraintTop_toTopOf="@+id/nutritionIV3" />
 
                 <ImageView
                     android:id="@+id/nutritionIV4"
                     android:layout_width="@dimen/foodNutritionW"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
                     android:adjustViewBounds="true"
-                    app:layout_constraintEnd_toStartOf="@id/nutritionTV4"
+                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV2"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionIV2"
                     app:layout_constraintTop_toTopOf="@+id/nutritionIV3"
                     app:srcCompat="@drawable/food_bowl" />
 
@@ -158,12 +158,10 @@
                     android:id="@+id/nutritionTV4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
                     android:fontFamily="@font/gilroy_medium"
                     android:text="50 cal"
                     app:layout_constraintBottom_toBottomOf="@+id/nutritionIV4"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionTV2"
                     app:layout_constraintTop_toTopOf="@+id/nutritionIV4" />
 
                 <ImageView
@@ -173,7 +171,8 @@
                     android:layout_marginTop="4dp"
                     android:adjustViewBounds="true"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV3"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionIV3"
                     app:layout_constraintTop_toBottomOf="@+id/nutritionIV3"
                     app:srcCompat="@drawable/food_bowl" />
 
@@ -181,23 +180,20 @@
                     android:id="@+id/nutritionTV5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
                     android:fontFamily="@font/gilroy_medium"
                     android:text="50 cal"
                     app:layout_constraintBottom_toBottomOf="@+id/nutritionIV5"
-                    app:layout_constraintStart_toEndOf="@+id/nutritionIV5"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionTV3"
                     app:layout_constraintTop_toTopOf="@+id/nutritionIV5" />
 
                 <ImageView
                     android:id="@+id/nutritionIV6"
                     android:layout_width="@dimen/foodNutritionW"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
                     android:adjustViewBounds="true"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/nutritionTV6"
+                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV4"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionIV4"
                     app:layout_constraintTop_toTopOf="@+id/nutritionIV5"
                     app:srcCompat="@drawable/food_bowl" />
 
@@ -205,12 +201,10 @@
                     android:id="@+id/nutritionTV6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginRight="4dp"
                     android:fontFamily="@font/gilroy_medium"
                     android:text="50 cal"
                     app:layout_constraintBottom_toBottomOf="@+id/nutritionIV6"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/nutritionTV4"
                     app:layout_constraintTop_toTopOf="@+id/nutritionIV6" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

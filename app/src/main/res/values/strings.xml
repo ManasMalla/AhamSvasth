@@ -21,5 +21,12 @@
     <string name="activity_walking">Walking</string>
     <string name="activityNotificationText">Exercise is important and we are here to detect you exercise!</string>
     <string name="waterNotificationText">It\'s time to drink some water! Go and have a glass!</string>
+    <string name="developer_name">Manas Malla</string>
+    <string name="developer_description">An Enthusiastic Developer 👨‍💻!\nA Studious Student👨‍🎓!\nA Gang Leader to Bro’s n Sis!</string>
+    <string name="socialLinks">Check me out on: \n ✔️ Facebook - <a href="http://facebook.com/manasmalla.dev"> http://facebook.com/manasmalla.dev</a> \n ✔️ Instagram -<a href=" http://instagram.com/malla_manas">  http://instagram.com/malla_manas </a> \n ✔️ Twitter- <a href="http://twitter.com/manas_malla_">http://twitter.com/manas_malla_</a> \n ✔️ Github- <a href="http://github.com/ManasMalla">http://github.com/ManasMalla</a> \n ✔️ Website - <a href="https://manasmalla.github.io">https://manasmalla.github.io</a></string>
+    <string name="coronacaution"> 🦠 A recent study has shown that <b>Novel-CoronaVirus-2019 (nCOVID19)</b> has been easily infecting people with <b>diabetes, thryoid, asthma and other related health issues</b>!\n 🦠 This app helps to <b>protext oursleves</b> from COVID19 also by performing <b>yoga aasanas and following diet and exercise plans</b>!\n <b>🦠 A special COVID19 section</b> also has been added!</string>
+    <string name="becoronaready"> Also, try out my latest app, Be Corona Ready! which helps us to stay safe by taking preventions, precautions and protecting ourselves and our nears ones from nCOVID19 by fun games!</string>
+    <string name="notification_description">Downloading Be Corona Ready</string>
+    <string name="unable_to_open_file">Unable to Open File</string>
 
 </resources>
