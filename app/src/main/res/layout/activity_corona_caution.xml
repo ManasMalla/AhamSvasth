@@ -274,7 +274,7 @@
                                 android:layout_height="wrap_content">
 
                                 <ImageView
-                                    android:id="@+id/imageView26"
+                                    android:id="@+id/imageView26_m3"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:adjustViewBounds="true"

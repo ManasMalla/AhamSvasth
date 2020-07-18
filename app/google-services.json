@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "818921527939-7dvslg3lbvk94v7ndah31qemufpg0mnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manasmalla.ahamsvasth",
+            "certificate_hash": "8788c8de511812226f453ab57a9b099a6d21e38c"
+          }
+        },
+        {
+          "client_id": "818921527939-iu8g3tev3nl335f7amlr7km4lhkpg7dk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manasmalla.ahamsvasth",
+            "certificate_hash": "9e85b3577d6203026e490979102105f642efe90a"
+          }
+        },
+        {
           "client_id": "818921527939-tde95pgbfl6d3mfrnu0i1vjgonap63gn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

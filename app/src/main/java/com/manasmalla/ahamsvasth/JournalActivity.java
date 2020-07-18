@@ -31,6 +31,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.fitness.Fitness;
@@ -163,6 +165,10 @@ public class JournalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_journal);
 
         floatingActionButton = findViewById(R.id.addActivityJournalButton);
+
+        AdView mAdView = findViewById(R.id.adView_journal);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //Navigation Bar Related
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_journal);

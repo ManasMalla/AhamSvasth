@@ -7,9 +7,10 @@
     tools:context=".MainActivity">
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintBottom_toTopOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -132,7 +133,7 @@
                                 app:progressStepAsInteger="false"
                                 app:progressWidth="12dp"
                                 app:suffixEnabled="false"
-                                app:textEnabled="false"/>
+                                app:textEnabled="false" />
 
                             <TextView
                                 android:id="@+id/textView40"
@@ -185,6 +186,149 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/eating" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout2_m"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/imageView11"
+                                app:layout_constraintTop_toTopOf="parent">
+
+
+                                <ImageView
+                                    android:id="@+id/nutritionIV1_m"
+                                    android:layout_width="@dimen/foodNutritionW"
+                                    android:layout_height="@dimen/foodNutritionW"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/calorific" />
+
+                                <TextView
+                                    android:id="@+id/nutritionTV1_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginLeft="4dp"
+                                    android:fontFamily="@font/gilroy_medium"
+                                    android:text="50 cal"
+                                    app:layout_constraintBottom_toBottomOf="@+id/nutritionIV1_m"
+                                    app:layout_constraintStart_toEndOf="@+id/nutritionIV1_m"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV1_m" />
+
+                                <ImageView
+                                    android:id="@+id/nutritionIV2_m"
+                                    android:layout_width="@dimen/foodNutritionW"
+                                    android:layout_height="@dimen/foodNutritionW"
+                                    android:layout_marginEnd="4dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintEnd_toStartOf="@+id/nutritionTV2_m"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/protein" />
+
+                                <TextView
+                                    android:id="@+id/nutritionTV2_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:fontFamily="@font/gilroy_medium"
+                                    android:text="50 cal"
+                                    app:layout_constraintBottom_toBottomOf="@+id/nutritionIV2_m"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV2_m" />
+
+                                <ImageView
+                                    android:id="@+id/nutritionIV3_m"
+                                    android:layout_width="@dimen/foodNutritionW"
+                                    android:layout_height="@dimen/foodNutritionW"
+                                    android:layout_marginTop="4dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV1_m"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionIV1_m"
+                                    app:layout_constraintTop_toBottomOf="@+id/nutritionIV1_m"
+                                    app:srcCompat="@drawable/carb" />
+
+                                <TextView
+                                    android:id="@+id/nutritionTV3_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_medium"
+                                    android:text="50 cal"
+                                    app:layout_constraintBottom_toBottomOf="@+id/nutritionIV3_m"
+                                    app:layout_constraintStart_toEndOf="@+id/nutritionIV3_m"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionTV1_m"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV3_m" />
+
+                                <ImageView
+                                    android:id="@+id/nutritionIV4_m"
+                                    android:layout_width="@dimen/foodNutritionW"
+                                    android:layout_height="wrap_content"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV2_m"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionIV2_m"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV3_m"
+                                    app:srcCompat="@drawable/fat" />
+
+                                <TextView
+                                    android:id="@+id/nutritionTV4_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_medium"
+                                    android:text="50 cal"
+                                    app:layout_constraintBottom_toBottomOf="@+id/nutritionIV4_m"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionTV2_m"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV4_m" />
+
+                                <ImageView
+                                    android:id="@+id/nutritionIV5_m"
+                                    android:layout_width="@dimen/foodNutritionW"
+                                    android:layout_height="@dimen/foodNutritionW"
+                                    android:layout_marginTop="4dp"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV3_m"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionIV3_m"
+                                    app:layout_constraintTop_toBottomOf="@+id/nutritionIV3_m"
+                                    app:srcCompat="@drawable/fibre" />
+
+                                <TextView
+                                    android:id="@+id/nutritionTV5_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_medium"
+                                    android:text="50 cal"
+                                    app:layout_constraintBottom_toBottomOf="@+id/nutritionIV5_m"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionTV3_m"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV5_m" />
+
+                                <ImageView
+                                    android:id="@+id/nutritionIV6_m"
+                                    android:layout_width="@dimen/foodNutritionW"
+                                    android:layout_height="@dimen/foodNutritionW"
+                                    android:adjustViewBounds="true"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/nutritionIV4_m"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionIV4_m"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV5_m"
+                                    app:srcCompat="@drawable/cholestrol_nu" />
+
+                                <TextView
+                                    android:id="@+id/nutritionTV6_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_medium"
+                                    android:text="50 cal"
+                                    app:layout_constraintBottom_toBottomOf="@+id/nutritionIV6_m"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/nutritionTV4_m"
+                                    app:layout_constraintTop_toTopOf="@+id/nutritionIV6_m" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -202,15 +346,15 @@
                         app:layout_constraintTop_toBottomOf="@+id/foodCard">
 
 
-                    <androidx.core.widget.NestedScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fillViewport="true"
-                        android:overScrollMode="never">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                        <androidx.core.widget.NestedScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:fillViewport="true"
+                            android:overScrollMode="never">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
                                 <ImageView
                                     android:id="@+id/imageView12"
@@ -239,8 +383,8 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/imageView12"
                                     app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.core.widget.NestedScrollView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.core.widget.NestedScrollView>
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -497,6 +641,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -518,6 +663,7 @@
 
     </FrameLayout>
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
@@ -530,6 +676,7 @@
         app:menu="@menu/my_navigation_items" />
 
     <View
+        android:id="@+id/view5"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="@drawable/shadow"
