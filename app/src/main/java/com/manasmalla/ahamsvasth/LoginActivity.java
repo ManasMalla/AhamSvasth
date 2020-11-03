@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -339,6 +341,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
             editor.putString("current_username", user.getDisplayName()).apply();
             Bitmap profileBitmap = downloadImage(userPhotoURL);
             File externalStorage = LoginActivity.this.getExternalFilesDir(null);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+                File storage = Environment.getExternalStorageDirectory();
+                externalStorage = new File(storage.getAbsolutePath() +
+                        "/Android/data/" + LoginActivity.this.getPackageName() + "/files");
+            }
             File filePath = new File(externalStorage.getAbsolutePath() + "profile");
             if (filePath.exists()) {
                 Log.i("FilePath", "Exists");

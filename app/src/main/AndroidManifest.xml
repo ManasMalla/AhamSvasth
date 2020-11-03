@@ -21,21 +21,32 @@
         android:roundIcon="@mipmap/aham_svsath_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AhamSvasth">
-        <activity android:name=".ListOfFoodActivity"></activity>
-        <activity android:name=".CoronaCautionActivity" />
-        <activity android:name=".RecipieActivity" />
-        <activity android:name=".AboutMeActivity" />
-        <activity android:name=".FoodActivity" />
+
+        <activity android:name=".ListOfFoodActivity"
+            android:screenOrientation="userPortrait"></activity>
+        <activity android:name=".CoronaCautionActivity"
+            android:screenOrientation="userPortrait" />
+        <activity android:name=".RecipieActivity"
+            android:screenOrientation="userPortrait"/>
+        <activity android:name=".AboutMeActivity"
+            android:screenOrientation="userPortrait"/>
+        <activity android:name=".FoodActivity"
+            android:screenOrientation="userPortrait" />
         <activity android:name=".YogaActivity" />
-        <activity android:name=".JournalActivity" />
+        <activity android:name=".JournalActivity"
+            android:screenOrientation="userPortrait" />
         <activity
             android:name=".IntroductionActivity"
-            android:theme="@style/Theme.introScreen" />
+            android:theme="@style/Theme.introScreen"
+            android:screenOrientation="userPortrait" />
         <activity
             android:name=".UserDataQuestionsActivity"
-            android:theme="@style/Theme.dataQuiz" />
-        <activity android:name=".UserDataQuizActivity" />
-        <activity android:name=".LoginActivity" />
+            android:theme="@style/Theme.dataQuiz"
+            android:screenOrientation="userPortrait" />
+        <activity android:name=".UserDataQuizActivity"
+            android:screenOrientation="userPortrait" />
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="userPortrait" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,7 +56,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="userPortrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

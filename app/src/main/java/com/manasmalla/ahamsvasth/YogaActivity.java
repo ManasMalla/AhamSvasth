@@ -163,7 +163,7 @@ public class YogaActivity extends AppCompatActivity {
         yogaPosesList.add(YogaPosesList.donePose);
 
         SharedPreferences sharedPreferences = getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
         sharedPreferences.edit().putInt("PosesNumber" + AhamSvasthaUser.getCurrentUsername(this) + simpleDateFormat.format(Calendar.getInstance().getTime()), yogaPosesList.size()-1).apply();
         pose = sharedPreferences.getInt("Pose" + AhamSvasthaUser.getCurrentUsername(this) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0);
 
@@ -188,7 +188,7 @@ public class YogaActivity extends AppCompatActivity {
     private void changeAasana() {
         SharedPreferences sharedPreferences = getSharedPreferences("com.manasmalla.ahamsvasth", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
         editor.putInt("Pose" + AhamSvasthaUser.getCurrentUsername(YogaActivity.this) + simpleDateFormat.format(Calendar.getInstance().getTime()), pose).apply();
         aasanNameTextView.setText(yogaPosesList.get(pose).getName());
         aasanAngloNameTextView.setText(yogaPosesList.get(pose).getAngloName());

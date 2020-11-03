@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -65,6 +66,11 @@ public class UserDataQuizActivity extends AppCompatActivity {
         }
         materialCardView = findViewById(R.id.appInfoQuizActivity);
         File externalStorage = UserDataQuizActivity.this.getExternalFilesDir(null);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+            File storage = Environment.getExternalStorageDirectory();
+            externalStorage = new File(storage.getAbsolutePath() +
+                    "/Android/data/" + UserDataQuizActivity.this.getPackageName() + "/files");
+        }
         File filePath = new File(externalStorage.getAbsolutePath() + "profile");
         File imageSlide = new File(filePath, "profile_image.png");
         if (imageSlide.exists()) {
@@ -110,6 +116,11 @@ public class UserDataQuizActivity extends AppCompatActivity {
                 profileBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
                 File externalStorage = UserDataQuizActivity.this.getExternalFilesDir(null);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+                    File storage = Environment.getExternalStorageDirectory();
+                    externalStorage = new File(storage.getAbsolutePath() +
+                            "/Android/data/" + UserDataQuizActivity.this.getPackageName() + "/files");
+                }
                 File filePath = new File(externalStorage.getAbsolutePath() + "profile");
                 if (filePath.exists()) {
                     Log.i("FilePath", "Exists");

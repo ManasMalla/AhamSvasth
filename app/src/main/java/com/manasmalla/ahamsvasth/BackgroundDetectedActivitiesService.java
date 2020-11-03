@@ -131,8 +131,8 @@ public class BackgroundDetectedActivitiesService extends Service {
         PendingIntent updateNoPendingIntent = PendingIntent.getBroadcast(this, 1, updateNoIntent, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
-        notifyBuilder.addAction(R.drawable.water, "Drank", updatePendingIntent);
-        notifyBuilder.addAction(R.drawable.water, "Snooze", updateNoPendingIntent);
+        notifyBuilder.addAction(R.drawable.ic_updated, "Drank", updatePendingIntent);
+        notifyBuilder.addAction(R.drawable.ic_no, "Snooze", updateNoPendingIntent);
         mNotifyManager = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         mNotifyManager.notify(100, notifyBuilder.build());

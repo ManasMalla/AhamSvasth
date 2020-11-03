@@ -98,6 +98,11 @@ public class JournalActivity extends AppCompatActivity {
     List<String> activitys, sDate, eDate;
     List<Integer> distances;
 
+    String currentActivityPerformed = "Unknown";
+    int activityDistance;
+    Location oldLocation;
+    Date detectedStartTime;
+
     private LocationRequest getLocationRequest() {
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(1000);
@@ -224,6 +229,10 @@ public class JournalActivity extends AppCompatActivity {
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 Log.d("Location", locationResult.getLastLocation().toString());
+                if (oldLocation != null){
+                    activityDistance += oldLocation.distanceTo(locationResult.getLastLocation());
+                }
+                oldLocation = locationResult.getLastLocation();
             }
         };
         listView = findViewById(R.id.exercisesListActivity);
@@ -233,16 +242,16 @@ public class JournalActivity extends AppCompatActivity {
         eDate = new ArrayList<>();
         if (ActivityDatabase.getDatabase(this) != null) {
 
-           List<ActivityDatabase.Activity> activityList = ActivityDatabase.getDatabase(this);
-           for (ActivityDatabase.Activity activity:activityList){
-               activitys.add(activity.getName());
-               distances.add(activity.getDistance());
-               sDate.add(new SimpleDateFormat("dd MMM,yy hh:mm a").format(activity.getStartTime()));
-               eDate.add(new SimpleDateFormat("dd MMM,yy hh:mm a").format(activity.getEndTime()));
-           }
+            List<ActivityDatabase.Activity> activityList = ActivityDatabase.getDatabase(this);
+            for (ActivityDatabase.Activity activity : activityList) {
+                activitys.add(activity.getName());
+                distances.add(activity.getDistance());
+                sDate.add(new SimpleDateFormat("dd MMM,yy hh:mm a").format(activity.getStartTime()));
+                eDate.add(new SimpleDateFormat("dd MMM,yy hh:mm a").format(activity.getEndTime()));
+            }
         }
 
-        ActivityListAdapter activityListAdapter = new ActivityListAdapter(this, activitys, sDate,eDate,distances);
+        ActivityListAdapter activityListAdapter = new ActivityListAdapter(this, activitys, sDate, eDate, distances);
         listView.setAdapter(activityListAdapter);
         activityListAdapter.notifyDataSetChanged();
         ;
@@ -270,13 +279,25 @@ public class JournalActivity extends AppCompatActivity {
             Log.i(username + "Activity", toActivityString(type, JournalActivity.this));
             Log.i("confidence", String.valueOf(confidence));
             String activityRecieved = toActivityString(type, JournalActivity.this);
-            if (activityRecieved.matches(JournalActivity.this.getString(R.string.activity_running)) || activityRecieved.matches(JournalActivity.this.getString(R.string.activity_walking)) || activityRecieved.matches(JournalActivity.this.getString(R.string.activity_on_bicycle))) {
+            if (activityRecieved.matches(currentActivityPerformed)){
+                //User is in the same activity.
+                detectedStartTime = Calendar.getInstance().getTime();
+            }else if (activityRecieved.matches(JournalActivity.this.getString(R.string.activity_running)) || activityRecieved.matches(JournalActivity.this.getString(R.string.activity_walking)) || activityRecieved.matches(JournalActivity.this.getString(R.string.activity_on_bicycle))) {
+                ActivityDatabase.Activity activityDone = new ActivityDatabase.Activity();
+                activityDone.setDistance(activityDistance);
+                activityDone.setName(activityRecieved);
+                activityDone.setStartTime(detectedStartTime);
+                activityDone.setEndTime(Calendar.getInstance().getTime());
+                ActivityDatabase activityDatabase = new ActivityDatabase(JournalActivity.this, activityDone);
                 if (ActivityCompat.checkSelfPermission(JournalActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(JournalActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && ActivityCompat.checkSelfPermission(JournalActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(JournalActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 300);
                 } else {
+                    activityDistance = 0;
+                    oldLocation = null;
                     //Get location
+                    Toast.makeText(this, "Hey, it seems you are walking, if the activity isn't registered once your done, please enter the work out manually for now!", Toast.LENGTH_LONG).show();
                     startCheckingLocation();
                 }
             }
@@ -354,7 +375,7 @@ public class JournalActivity extends AppCompatActivity {
         if (ActivityDatabase.getDatabase(this) != null) {
 
             List<ActivityDatabase.Activity> activityList = ActivityDatabase.getDatabase(this);
-            for (ActivityDatabase.Activity activity:activityList){
+            for (ActivityDatabase.Activity activity : activityList) {
                 activitys.add(activity.getName());
                 distances.add(activity.getDistance());
                 sDate.add(new SimpleDateFormat("dd MMM,yy hh:mm a").format(activity.getStartTime()));
@@ -363,7 +384,7 @@ public class JournalActivity extends AppCompatActivity {
             }
         }
 
-        ActivityListAdapter activityListAdapter = new ActivityListAdapter(this, activitys, sDate,eDate,distances);
+        ActivityListAdapter activityListAdapter = new ActivityListAdapter(this, activitys, sDate, eDate, distances);
         listView.setAdapter(activityListAdapter);
         activityListAdapter.notifyDataSetChanged();
     }
@@ -565,7 +586,7 @@ public class JournalActivity extends AppCompatActivity {
                                     activity.setEndTime(endDateCalendar);
 
                                     TextView en = findViewById(R.id.textView38);
-                                    en.setText(new SimpleDateFormat("dd MMM YYYY hh:mm:ss a").format(endDateCalendar));
+                                    en.setText(new SimpleDateFormat("dd MMM yyyy hh:mm:ss a").format(endDateCalendar));
                                 }
                             }, CalendarHourEnd, CalendarMinuteEnd, false);
                             timePickerDialog.setAccentColor("#f86734");
@@ -684,7 +705,7 @@ public class JournalActivity extends AppCompatActivity {
                                     Log.d("DateS", startDateCalendar.toString());
                                     Log.d("DateS", String.valueOf(startDateCalendar.getDate()));
                                     TextView st = findViewById(R.id.textView39);
-                                    st.setText(new SimpleDateFormat("dd MMM YYYY hh:mm:ss a").format(startDateCalendar));
+                                    st.setText(new SimpleDateFormat("dd MMM yyyy hh:mm:ss a").format(startDateCalendar));
                                 }
                             }, CalendarHourStart, CalendarMinuteStart, false);
                             timePickerDialog.setAccentColor("#f86734");
@@ -697,7 +718,7 @@ public class JournalActivity extends AppCompatActivity {
                     });
                 }
             });
-            String[] exercises = new String[]{"Walking", "Running", "Cycling","Exercise"};
+            String[] exercises = new String[]{"Walking", "Running", "Cycling", "Exercise"};
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, exercises);
             autoCompleteTextView.setAdapter(arrayAdapter);
             autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -720,17 +741,53 @@ public class JournalActivity extends AppCompatActivity {
         TextInputEditText editText = findViewById(R.id.distanceEditTextJournal);
         Log.d("DateErro", startDateCalendar.toString());
         if (editText.getText().toString() != null & !(editText.getText().toString().matches(""))) {
-            activity.setDistance(Integer.parseInt(editText.getText().toString()));
-            activity.setStartTime(startDateCalendar);
-            activity.setEndTime(endDateCalendar);
-            Log.d("distanceneter", String.valueOf(activity.getDistance()));
+            if (startDateCalendar != null && endDateCalendar != null) {
+                activity.setDistance(Integer.parseInt(editText.getText().toString()));
+                activity.setStartTime(startDateCalendar);
+                activity.setEndTime(endDateCalendar);
+                Log.d("distanceneter", String.valueOf(activity.getDistance()));
+                ActivityDatabase database = new ActivityDatabase(JournalActivity.this, activity);
+                Toast.makeText(this, "Wait a moment while we update your data! :)", Toast.LENGTH_SHORT).show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                       //
+                        activitys = new ArrayList<>();
+                        distances = new ArrayList<>();
+                        sDate = new ArrayList<>();
+                        eDate = new ArrayList<>();
+                        if (ActivityDatabase.getDatabase(JournalActivity.this) != null) {
+
+                            List<ActivityDatabase.Activity> activityList = ActivityDatabase.getDatabase(JournalActivity.this);
+                            for (ActivityDatabase.Activity activity : activityList) {
+                                activitys.add(activity.getName());
+                                distances.add(activity.getDistance());
+                                sDate.add(new SimpleDateFormat("dd MMM,yy hh:mm a").format(activity.getStartTime()));
+                                eDate.add(new SimpleDateFormat("dd MMM,yy hh:mm a").format(activity.getEndTime()));
+                                Log.d("NEW", activity.getStartTime().toString());
+                            }
+                        }
+
+                        ActivityListAdapter activityListAdapter = new ActivityListAdapter(JournalActivity.this, activitys, sDate, eDate, distances);
+                        listView.setAdapter(activityListAdapter);
+                        activityListAdapter.notifyDataSetChanged();
+                       //
+                    }
+                }, 3000);
+
+            }else{
+                Toast.makeText(this, "Please enter the date and time of the activity", Toast.LENGTH_SHORT).show();
+            }
+        } else {
             ActivityDatabase database = new ActivityDatabase(JournalActivity.this, activity);
-        }else{
-            ActivityDatabase database = new ActivityDatabase(JournalActivity.this, activity);
+            Toast.makeText(this, "Please enter the kind of activity!", Toast.LENGTH_SHORT).show();
         }
 
         MaterialCardView materialCardView = findViewById(R.id.addExerciseCardView);
         materialCardView.setVisibility(View.GONE);
+
+
     }
 
     public void hideView(View view) {

@@ -55,6 +55,13 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
         setContentView(R.layout.activity_user_data_questions);
 
         user = new AhamSvasthaUser();
+        user.gender = null;
+        user.diseases = null;
+        user.age = 0;
+        user.height =0;
+        user.weight = 0;
+        user.activityUser = null;
+
 
         question = findViewById(R.id.textView);
 
@@ -99,9 +106,67 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            private static final float thresholdOffset = 0.5f;
+            private static final int thresholdOffsetPixels = 1;
+            private boolean scrollStarted, checkDirection;
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.d("NUmber", String.valueOf(position));
 
+               try {
+                   if (position == 1 && user.gender == null){
+                       //Log.d("Gender", user.gender);
+                       viewPager.setCurrentItem(0);
+                   }else if ((position == 2) && user.age == 0){
+                       if (ageEditText.getText().toString() != null) {
+                           user.age = Integer.parseInt(ageEditText.getText().toString());
+                       }
+                       viewPager.setCurrentItem(1);
+                   }else if ((position == 3) && user.height == 0){
+                       if (heightEditText.getText().toString() != null) {
+                           user.height = Integer.parseInt(heightEditText.getText().toString());
+                       }
+                       viewPager.setCurrentItem(2);
+                   }else if ((position == 4) && user.weight == 0){
+                       if (weightEditText.getText().toString() != null) {
+                           user.weight = Integer.parseInt(weightEditText.getText().toString());
+                       }
+                       viewPager.setCurrentItem(3);
+                   }else if ((position == 5) && user.diseases == null){
+                       user.diseases = null;
+                       if ((position == 5) && user.diseases == null){
+                           user.diseases = null;
+                           Toast.makeText(UserDataQuestionsActivity.this, "Either select a disease you have or scroll down to click the next button!", Toast.LENGTH_SHORT).show();
+                           viewPager.setCurrentItem(4);
+                       }
+                       viewPager.setCurrentItem(4);
+                   }else if ((position == 6) && user.activityUser == null){
+                       user.activityUser = null;
+                       if ((position == 6) && user.activityUser == null){
+                           user.activityUser = null;
+                           viewPager.setCurrentItem(5);
+                       }
+                       viewPager.setCurrentItem(5);
+                   }
+               }catch (NumberFormatException e){
+                   if ((position == 3) && user.height == 0){
+                       viewPager.setCurrentItem(2);
+                   }else if ((position == 4) && user.weight == 0){
+                       viewPager.setCurrentItem(3);
+                   }else if ((position == 2) && user.age == 0){
+                       viewPager.setCurrentItem(1);
+                   }
+                   Toast.makeText(UserDataQuestionsActivity.this, "Invalid Input! Please check again!", Toast.LENGTH_SHORT).show();
+               }catch (Exception e){
+                   if ((position == 3) && user.height == 0){
+                       viewPager.setCurrentItem(2);
+                   }else if ((position == 4) && user.weight == 0){
+                       viewPager.setCurrentItem(3);
+                   }else if ((position == 2) && user.age == 0){
+                       viewPager.setCurrentItem(1);
+                   }
+                   Toast.makeText(UserDataQuestionsActivity.this, "Invalid Input! Please check again!", Toast.LENGTH_SHORT).show();
+               }
             }
 
             @Override
@@ -110,7 +175,6 @@ public class UserDataQuestionsActivity extends AppCompatActivity implements View
                 if (position == 0 && findViewById(R.id.boyImageView)!=null) {
                     question.setText("Please select your gender!");
                 } else if (position == 1 && findViewById(R.id.birthdayAgeImageView) != null) {
-
                     ImageView birthdayImageView = findViewById(R.id.birthdayAgeImageView);
                     question.setText("Please enter your age!");
                     if (user.gender == "Boy") {

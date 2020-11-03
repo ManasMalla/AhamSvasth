@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class RecommendationAdapter extends BaseAdapter {
@@ -65,7 +67,7 @@ public class RecommendationAdapter extends BaseAdapter {
         viewHolder.textTextView.setText(text.get(position));
         viewHolder.textTextView.setTextSize(textSize);
 
-        viewHolder.bulletImageView.setImageResource(drawableBullets.get(position));
+        Glide.with(context).asBitmap().load(drawableBullets.get(position)).override(64,64).into(viewHolder.bulletImageView);
 
         return convertView;
     }

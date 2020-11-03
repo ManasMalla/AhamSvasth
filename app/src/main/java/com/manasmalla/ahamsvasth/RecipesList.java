@@ -176,7 +176,7 @@ public class RecipesList {
         chanaDhoklaMethod.add("Finally, enjoy dal dhokla with green chutney");
         chanaDhoklaNutrients.put(PROTEINS, "1.8g");
         chanaDhoklaNutrients.put(CARBS, "4.7g");
-        chanaDhoklaNutrients.put(ENERGY, "37cal");
+        chanaDhoklaNutrients.put(ENERGY, "37 cal");
         chanaDhoklaNutrients.put(FATS, "1.2g");
         chanaDhoklaNutrients.put(FIBRE, "1.1g");
         chanaDhoklaNutrients.put(CHOLESTEROL, "0mg");
@@ -193,7 +193,7 @@ public class RecipesList {
                         "Place a ball sized prepared mix veg stuffing in the centre.", "Take the edge and start pleating bringing to the centre.",
                         "Also join the pleats together and secure tight pinching off excess dough.", "Sprinkle some multigrain flour and roll slightly thick.", "On a hot tawa place the rolled paratha and roast both sides with oil.",
                         "Finally, serve hot Multigrain Paratha with sauce, raita or pickle!"},
-                new String[]{"4.1g", "20.6g", "3.5g", "150cal", "4.5g", "0mg"}
+                new String[]{"4.1g", "20.6g", "3.5g", "150 cal", "4.5g", "0mg"}
         );
 
         //Lunch
@@ -205,7 +205,7 @@ public class RecipesList {
                         "Add turmeric, red chili powder and salt. Mix well.",
                         "Add rice and mixed lentils.", "Add 6 cups of water. Give a quick stir and close the Instant Pot lid with pressure valve to sealing.",
                         " Press the rice button (12 mins) followed by natural pressure release.", "Open the Instant Pot and  garnish with cilantro.", "Serve hot with roasted papad and pickle."},
-                new String[]{"4g", "35g", "5g", "205cal", "2g", "12mg"});
+                new String[]{"4g", "35g", "5g", "205 cal", "2g", "12mg"});
         palakKichidi = createRecipe("Palak Khichidi",
                 R.drawable.palakkichidi,
                 new Ingredient[]{spinach, rice, moongdal, turmeric, salt, ghee, gingergarlicPaste, onion, tomato, redChilliPowder, garam_masala, cinamon, cloves, elachi, jeera, curryLeaf, redChilli, garlic, greenChilli},
@@ -222,7 +222,7 @@ public class RecipesList {
                         "Add the garlic and green chillies and sauté on a medium flame for 30 seconds.",
                         "Pour the tempering over the palak khichdi and mix well.",
                         "Serve the palak khichdi hot with fresh curds and papad.",},
-                new String[]{"4.7g", "25.1g", "10.3g", "212cal", "2.9g", "0mg"});
+                new String[]{"4.7g", "25.1g", "10.3g", "212 cal", "2.9g", "0mg"});
         bismillaibath = createRecipe("Bisi Bele Bhath",
                 R.drawable.bismillvath,
                 new Ingredient[]{cashew, elachi, chanaDal, cinamon, cloves, cloves, coriender, jeera, coconut, redChilli, curryLeaf, gingergarlicPaste, vegetables, mustardSeeds, oil, rice, salt, tamrindJuice, toordal, turmeric, uradDal},
@@ -231,7 +231,7 @@ public class RecipesList {
                         "Heat the oil in pan and add the cumin and mustard seeds and curry leaves, after spluttering add the onions and fry till soft.", "Add all the chopped vegetables and softly fry it.",
                         "Add the rice, toor dal to the fried vegetables and add the masala /tomatoes(optional)along with tamarind juice and salt, cool it till the ingredient are done.",
                         "Garnish the dish with coriander leaves and serve it hot."},
-                new String[]{"10g", "57.6g", "12.3g", "380cal", "5.8g", "0mg"});
+                new String[]{"10g", "57.6g", "12.3g", "380 cal", "5.8g", "0mg"});
         sambar = createRecipe("Sambhar",
                 R.drawable.sambar,
                 new Ingredient[]{redChilliPowder, fenugreekSeeds, hing, jeera, mustardSeeds, redChilli, turmeric, oil, salt, onion, curryLeaf, vegetables, garlic, tamrindJuice, tomato, jaggery, sambarPowder, toordal},
@@ -241,7 +241,7 @@ public class RecipesList {
                         "Add tomatoes, tamarind juice, sambhar powder, jaggery, salt, add water put the lid on cook until the vegetables are tender.",
                         "Then add boiled and mashed dal and place the lid and cook for 15 minutes in a slow flame.",
                         "Add coriander leaves, switch off the flame, and serve the hot tasty sambar!"},
-                new String[]{"5.2g", "18.4g", "5.4g", "143cal", "2.8g", "0mg"});
+                new String[]{"5.2g", "18.4g", "5.4g", "143 cal", "2.8g", "0mg"});
 
         amlaPulihora = createRecipe("Amla Pulihora",
                 R.drawable.amlapulihora,
@@ -251,7 +251,7 @@ public class RecipesList {
                         "Heat oil in a pan and add mustard seeds, cumin seeds, dry red chilly, urad dal, chana dal, ground nuts, curry leaves and saute it.",
                         "Then add little salt, turmeric powder, amla paste and saute it.",
                         "In the same pan, add cooked rice, mix thoroughly and serve it."},
-                new String[]{"7.2g", "32.1g", "18.1g", "317cal", "1.8g", "0mg"});
+                new String[]{"7.2g", "32.1g", "18.1g", "317 cal", "1.8g", "0mg"});
         //Snack
         threeBeanChat = createRecipe("Three Bean Chaat",
                 R.drawable.threebeanchat,
@@ -327,7 +327,7 @@ public class RecipesList {
                         "Cover and simmer for 15 minutes or until the curry thickens.",
                         "Now add 1 tsp kasuri methi, 2 tbsp coriander and mix well.",
                         "Finally, enjoy rajma with hot jeera rice."},
-                new String[]{"6.4g", "19g", "11.7g", "207cal", "2.6g", "0mg"});
+                new String[]{"6.4g", "19g", "11.7g", "207 cal", "2.6g", "0mg"});
         palakpaneer = createRecipe("Palak Paneer",
                 R.drawable.palak_panner,
                 new Ingredient[]{water, spinach,ginger, garlic, greenChilli, oil, butter, paneer, jeera, cinamon, cloves, elachi, bayleaf, kasuriMethi, onion ,tomato, salt, garam_masala, cream},
@@ -373,7 +373,7 @@ public class RecipesList {
                         "Add ½ cup water and cook for another 10 minutes.",
                         "Turn off the flame and add 2 tbsp cream, 1 tsp kasuri methi and 2 tbsp coriander. mix well.",
                         "Finally, serve mix vegetable curry / mix veg recipe with hot roti."},
-                new String[]{"6g", "29g", "9g", "215cal", "3g", "1mg"});
+                new String[]{"6g", "29g", "9g", "215 cal", "3g", "1mg"});
         this.brownRice = createRecipe("Brown Rice",
                 R.drawable.brown_rice,
                 new Ingredient[]{Ingredient.brownRice, water}, new String[]{"1 cup", "2 cup"},
@@ -392,7 +392,7 @@ public class RecipesList {
                         "Take a pan add oil,cumin seeds,corinader seeds crushed,chopped onion,salt mix well and then add turmuric, ginger garlic paste,cook it for 2 mins and then add curry leaves,green chillies saute them.",
                         "Now add tomatoes cook it for 1 min, then add coriander powder, cumin powder,chilli powder mix well and cook for 4min till tomatoes are cooked now add bell pepper,and sprinkle chopped coriander leaves , and finely add the fried bhendi, mix little bit and close it a lid for 4 min in very slow flame.",
                         "Once bhendi is cooked add garama masala powder and mix well serve hot with roti or rice."},
-                new String[]{"4g", "3g", "5g", "130cal", "8.6g", "0mg"});
+                new String[]{"4g", "3g", "5g", "130 cal", "8.6g", "0mg"});
 
     }
 

@@ -74,6 +74,8 @@ public class ActivityDatabase {
                     Log.d("SP", simpleDateFormat.format(simpleDateFormat.parse(simpleDateFormat.format(Calendar.getInstance().getTime()))));
                     if (sharedPreferences.getInt("distance" + id + currentuser, -1) != -1) {
                         activity.setDistance(sharedPreferences.getInt("distance" + id + currentuser, -1));
+                    }else{
+                        activity.setDistance(0);
                     }
                     activityList.add(activity);
                 } catch (ParseException e) {

@@ -69,4 +69,14 @@ public class ListOfFoodActivity extends AppCompatActivity {
         });
 
     }
+
+    public void emailMeOnClickRecipe(View view) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"manasmalla.dev@gmail.com"});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Food Recipe Addition :)");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hey Manas, I am *YOUR NAME* and m username is *YOUR USERNAME*! I just checked out your app and felt a need for these recipes, please add them in \n    • Recipe 1 (Type in your recipe name here)\n    • Recipe 2 (Type in your recipe name here)\n    • Recipe 3 (Type in your recipe name here). \n Add or remove the recipes according to your requirement in the format given above.");
+        emailIntent.setType("text/email");
+        Toast.makeText(this, "Please type in the recipes name in the text holder in the email which will popup once you select your mail app", Toast.LENGTH_LONG).show();
+        startActivity(Intent.createChooser(emailIntent, "Please choose your email app to send: "));
+    }
 }

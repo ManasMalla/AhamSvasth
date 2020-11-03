@@ -23,6 +23,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     public void waterOnClick(View view) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
         editor.putInt("Water" + AhamSvasthaUser.getCurrentUsername(getApplicationContext()) + simpleDateFormat.format(Calendar.getInstance().getTime()), sharedPreferences.getInt("Water" + AhamSvasthaUser.getCurrentUsername(getApplicationContext()) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0) + 1).apply();
         Toast.makeText(getApplicationContext(), "Very Good! You drank " + sharedPreferences.getInt("Water" + AhamSvasthaUser.getCurrentUsername(getApplicationContext()) + simpleDateFormat.format(Calendar.getInstance().getTime()), 0) + " glasses :)", Toast.LENGTH_SHORT).show();
         if (MainActivity.isAppForeground) {
@@ -157,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
         }
         greetTextView.setText("Hey, " + firstName + "!");
         File externalStorage = MainActivity.this.getExternalFilesDir(null);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+            File storage = Environment.getExternalStorageDirectory();
+            externalStorage = new File(storage.getAbsolutePath() +
+                    "/Android/data/" + MainActivity.this.getPackageName() + "/files");
+        }
         File filePath = new File(externalStorage.getAbsolutePath() + "profile");
         File imageSlide = new File(filePath, "profile_image.png");
         Bitmap bitmap = BitmapFactory.decodeFile(imageSlide.getAbsolutePath());
@@ -243,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 glass.setImageDrawable(wrapDrawable);
             }
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
         /*try {
 //            Log.i("Sleep Date", String.valueOf(simpleDateFormat.parse(getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getString("Slept@"+ AhamSvasthaUser.getCurrentUsername(MainActivity.this)+ simpleDateFormat.format(calendar.getTime()), ""))));
         } catch (ParseException e) {
@@ -305,12 +311,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         for (Recipe recipeB : rBreakfast) {
-            proteins += Double.parseDouble(recipeB.nutrients.get(PROTEINS).replace("g", ""));
-            carbohydrates += Double.parseDouble(recipeB.nutrients.get(CARBS).replace("g", ""));
-            fats += Double.parseDouble(recipeB.nutrients.get(FATS).replace("g", ""));
-            fibre += Double.parseDouble(recipeB.nutrients.get(FIBRE).replace("g", ""));
-            energy += Double.parseDouble(recipeB.nutrients.get(ENERGY).replace(" cal", ""));
-            cholestrol += Double.parseDouble(recipeB.nutrients.get(CHOLESTEROL).replace("mg", ""));
+            try {
+                proteins += Double.parseDouble(recipeB.nutrients.get(PROTEINS).replace("g", ""));
+                carbohydrates += Double.parseDouble(recipeB.nutrients.get(CARBS).replace("g", ""));
+                fats += Double.parseDouble(recipeB.nutrients.get(FATS).replace("g", ""));
+                fibre += Double.parseDouble(recipeB.nutrients.get(FIBRE).replace("g", ""));
+                energy += Double.parseDouble(recipeB.nutrients.get(ENERGY).replace(" cal", ""));
+                cholestrol += Double.parseDouble(recipeB.nutrients.get(CHOLESTEROL).replace("mg", ""));
+            }catch (NumberFormatException e){
+                Toast.makeText(this, "Oops! Failed to read the data! :(", Toast.LENGTH_SHORT).show();
+            }
         }
 
         for (String lu : lunch) {
@@ -407,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getSleepTimeText() {
         messageSleep.setText("You slept for");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
         Date sleptDate = null, wokeDate = null;
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -1);
@@ -456,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sleptOnClick(View view) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMYYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
         if (isSleep) {
             if (getSharedPreferences("com.manasmalla.ahamsvasth", Context.MODE_PRIVATE).getString("Slept@" + AhamSvasthaUser.getCurrentUsername(MainActivity.this) + simpleDateFormat.format(Calendar.getInstance().getTime()), null) != null) {
                 Log.d("Slept", "Already");
